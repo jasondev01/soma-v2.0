@@ -61,3 +61,5 @@ export default async function SearchQueryPage({ searchParams }: Props) {
         </main>
     )
 }
+
+export const revalidate = 60

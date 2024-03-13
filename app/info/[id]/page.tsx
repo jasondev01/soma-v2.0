@@ -68,3 +68,5 @@ export default async function InfoPage({ params }: Props) {
         </main>
     )
 }
+
+export const revalidate = 60

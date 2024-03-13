@@ -2,12 +2,16 @@ import { config } from "../config"
 
 const { baseUrl } = config
 
+const headers = new Headers({
+    "Content-Type": "application/json",
+    "Accept": `application/json`,
+})
+
 export const getRecent = async () => {
     try {
         const response = await fetch(`${baseUrl}/api/recent`, {
-            next: {
-                revalidate: 60
-            }
+            method: 'GET',
+            headers: headers,
         })
 
         return await response.json()
@@ -19,9 +23,8 @@ export const getRecent = async () => {
 export const getTopAiring = async () => {
     try {
         const response = await fetch(`${baseUrl}/api/top-airing`, {
-            next: {
-                revalidate: 60
-            }
+            method: 'GET',
+            headers: headers,
         })
 
         return await response.json()
@@ -33,9 +36,8 @@ export const getTopAiring = async () => {
 export const getPopular = async () => {
     try {
         const response = await fetch(`${baseUrl}/api/popular`, {
-            next: {
-                revalidate: 60
-            }
+            method: 'GET',
+            headers: headers,
         })
 
         return await response.json()
@@ -47,9 +49,8 @@ export const getPopular = async () => {
 export const getInfo = async (id: string) => {
     try {
         const response = await fetch(`${baseUrl}/api/info/${id}`, {
-            next: {
-                revalidate: 60
-            }
+            method: 'GET',
+            headers: headers,
         })
 
         return await response.json()
@@ -61,9 +62,8 @@ export const getInfo = async (id: string) => {
 export const getSources = async (id: string) => {
     try {
         const response = await fetch(`${baseUrl}/api/watch/${id}`, {
-            next: {
-                revalidate: 60
-            }
+            method: 'GET',
+            headers: headers,
         })
         return await response.json()
     } catch (error) {
@@ -74,9 +74,8 @@ export const getSources = async (id: string) => {
 export const getTMDBResource = async (title: string) => {
     try {
         const response = await fetch(`${baseUrl}/api/tmdb?query=${title}`, {
-            next: {
-                revalidate: 60
-            }
+            method: 'GET',
+            headers: headers,
         })
         return await response.json()
     } catch (error) {
@@ -87,9 +86,8 @@ export const getTMDBResource = async (title: string) => {
 export const getBanner = async (title: string) => {
     try {
         const response = await fetch(`${baseUrl}/api/cover?id=${title}`, {
-            next: {
-                revalidate: 60
-            }
+            method: 'GET',
+            headers: headers,
         })
         return await response.json()
     } catch (error) {
@@ -100,9 +98,8 @@ export const getBanner = async (title: string) => {
 export const searchAnime = async (query: string) => {
     try {
         const response = await fetch(`${baseUrl}/api/search/${query}`, {
-            next: {
-                revalidate: 60
-            }
+            method: 'GET',
+            headers: headers,
         })
         return await response.json()
     } catch (error) {
@@ -113,9 +110,8 @@ export const searchAnime = async (query: string) => {
 export const getNews = async () => {
     try {
         const response = await fetch(`${baseUrl}/api/news`, {
-            next: {
-                revalidate: 60
-            }
+            method: 'GET',
+            headers: headers,
         })
         return await response.json()
     } catch (error) {
