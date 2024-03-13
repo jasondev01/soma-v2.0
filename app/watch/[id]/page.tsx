@@ -151,5 +151,3 @@ export default async function WatchPage({ params }: Props) {
         </main>
     )
 }
-
-export const revalidate = 60

@@ -13,7 +13,7 @@ export default function Footer() {
         <footer className='mt-16'>
             <div className='container pt-10 pb-5'>
                 <Link href='/' className="block w-fit mx-auto text-2xl font-bold tracking-wide">
-                    soma-anime.
+                    soma-tv.
                 </Link>
                 <ul className='flex gap-2 justify-center'>
                 {footerMenus.map((menu, idx) => (
@@ -31,7 +31,7 @@ export default function Footer() {
                     This website does not store any files on its server. Instead, it offers links to media content hosted on third-party services. <br />
                 </p>
                 <ul className='flex gap-2 justify-center mt-1 text-[11px]'>
-                    <li>&copy; soma-anime.</li>
+                    <li>&copy; soma-tv.</li>
                     <li className='bulletpoints'>•</li>
                     <li>2024</li>
                 </ul>

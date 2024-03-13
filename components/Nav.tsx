@@ -76,7 +76,7 @@ export default function Nav() {
                 <div className='text-2xl md:text-4xl font-extrabold relative z-30'>
                     <Link href="/">
                         <h1 style={{ textShadow: "0px 2px 4px rgba(103, 232, 249, 0.5)" }}>
-                            soma-anime.
+                            soma-tv. <span className='sr-only'>| watch and stream anime, ad free</span>
                         </h1>
                     </Link>
                 </div>

@@ -12,6 +12,9 @@ export const getRecent = async () => {
         const response = await fetch(`${baseUrl}/api/recent`, {
             method: 'GET',
             headers: headers,
+            next: {
+                revalidate: 3600
+            }
         })
 
         return await response.json()
@@ -25,6 +28,9 @@ export const getTopAiring = async () => {
         const response = await fetch(`${baseUrl}/api/top-airing`, {
             method: 'GET',
             headers: headers,
+            next: {
+                revalidate: 3600
+            }
         })
 
         return await response.json()
@@ -38,6 +44,9 @@ export const getPopular = async () => {
         const response = await fetch(`${baseUrl}/api/popular`, {
             method: 'GET',
             headers: headers,
+            next: {
+                revalidate: 3600
+            }
         })
 
         return await response.json()
@@ -51,6 +60,9 @@ export const getInfo = async (id: string) => {
         const response = await fetch(`${baseUrl}/api/info/${id}`, {
             method: 'GET',
             headers: headers,
+            next: {
+                revalidate: 3600
+            }
         })
 
         return await response.json()
@@ -64,6 +76,9 @@ export const getSources = async (id: string) => {
         const response = await fetch(`${baseUrl}/api/watch/${id}`, {
             method: 'GET',
             headers: headers,
+            next: {
+                revalidate: 3600
+            }
         })
         return await response.json()
     } catch (error) {
@@ -76,6 +91,9 @@ export const getTMDBResource = async (title: string) => {
         const response = await fetch(`${baseUrl}/api/tmdb?query=${title}`, {
             method: 'GET',
             headers: headers,
+            next: {
+                revalidate: 3600
+            }
         })
         return await response.json()
     } catch (error) {
@@ -88,6 +106,9 @@ export const getBanner = async (title: string) => {
         const response = await fetch(`${baseUrl}/api/cover?id=${title}`, {
             method: 'GET',
             headers: headers,
+            next: {
+                revalidate: 3600
+            }
         })
         return await response.json()
     } catch (error) {
@@ -100,6 +121,9 @@ export const searchAnime = async (query: string) => {
         const response = await fetch(`${baseUrl}/api/search/${query}`, {
             method: 'GET',
             headers: headers,
+            next: {
+                revalidate: 3600
+            }
         })
         return await response.json()
     } catch (error) {
@@ -112,6 +136,9 @@ export const getNews = async () => {
         const response = await fetch(`${baseUrl}/api/news`, {
             method: 'GET',
             headers: headers,
+            next: {
+                revalidate: 3600
+            }
         })
         return await response.json()
     } catch (error) {

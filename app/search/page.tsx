@@ -28,13 +28,13 @@ export function generateMetadata({ searchParams }: Props): Metadata {
                     url: '/soma-og.webp',
                     width: 800,
                     height: 600,
-                    alt: 'Soma anime',
+                    alt: 'Soma TV',
                 },
                 {
                     url: '/soma-og.webp',
                     width: 1800,
                     height: 1600,
-                    alt: 'Soma anime',
+                    alt: 'Soma TV',
                 },
             ],
             url: `/search?q=${query}`,
@@ -61,5 +61,3 @@ export default async function SearchQueryPage({ searchParams }: Props) {
         </main>
     )
 }
-
-export const revalidate = 60

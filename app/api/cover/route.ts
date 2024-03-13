@@ -15,7 +15,7 @@ export async function GET(req: NextRequest) {
                 'Accept': 'application/json'
             },
             next: {
-                revalidate: 0
+                revalidate: 30
             }
         })
 
