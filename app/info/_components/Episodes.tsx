@@ -2,7 +2,7 @@
 
 import { EpisodeInterface, InfoInterface } from "@/types"
 import Link from "next/link";
-import { useState } from "react";
+import { useState } from "react"
 
 type Props = {
     data: InfoInterface
@@ -14,11 +14,11 @@ export default function Episodes({ data }: Props) {
 
     const rangeSize = 200
     const totalEpisodes = data?.episodes?.length
-    const numRanges = Math.ceil(totalEpisodes / rangeSize);
+    const numRanges = Math.ceil(totalEpisodes / rangeSize)
 
     const range = []
     for (let i = 0; i < numRanges; i++) {
-        const start = i * rangeSize;
+        const start = i * rangeSize
         const end = Math.min(start + rangeSize - 1, totalEpisodes - 1)
         range.push({ start, end })
     }
@@ -34,7 +34,7 @@ export default function Episodes({ data }: Props) {
     return (
         <section>
             <div className="container mt-10">
-                <h3>
+                <h3 className="text-lg font-bold uppercase">
                     Episodes
                 </h3>
                 <div className="grid grid-cols-3 md:grid-cols-6 xl:grid-cols-9 mt-5 gap-x-2 md:gap-x-5 gap-y-2 text-sm uppercase text-center">

@@ -2,16 +2,9 @@ import { config } from "../config"
 
 const { baseUrl } = config
 
-const headers = new Headers({
-    "Content-Type": "application/json",
-    "Accept": `application/json`,
-})
-
 export const getRecent = async () => {
     try {
         const response = await fetch(`${baseUrl}/api/recent`, {
-            method: 'GET',
-            headers: headers,
             next: {
                 revalidate: 3600
             }
@@ -26,8 +19,6 @@ export const getRecent = async () => {
 export const getTopAiring = async () => {
     try {
         const response = await fetch(`${baseUrl}/api/top-airing`, {
-            method: 'GET',
-            headers: headers,
             next: {
                 revalidate: 3600
             }
@@ -42,8 +33,7 @@ export const getTopAiring = async () => {
 export const getPopular = async () => {
     try {
         const response = await fetch(`${baseUrl}/api/popular`, {
-            method: 'GET',
-            headers: headers,
+
             next: {
                 revalidate: 3600
             }
@@ -58,8 +48,6 @@ export const getPopular = async () => {
 export const getInfo = async (id: string) => {
     try {
         const response = await fetch(`${baseUrl}/api/info/${id}`, {
-            method: 'GET',
-            headers: headers,
             next: {
                 revalidate: 3600
             }
@@ -74,8 +62,6 @@ export const getInfo = async (id: string) => {
 export const getSources = async (id: string) => {
     try {
         const response = await fetch(`${baseUrl}/api/watch/${id}`, {
-            method: 'GET',
-            headers: headers,
             next: {
                 revalidate: 3600
             }
@@ -89,8 +75,6 @@ export const getSources = async (id: string) => {
 export const getTMDBResource = async (title: string) => {
     try {
         const response = await fetch(`${baseUrl}/api/tmdb?query=${title}`, {
-            method: 'GET',
-            headers: headers,
             next: {
                 revalidate: 3600
             }
@@ -104,8 +88,6 @@ export const getTMDBResource = async (title: string) => {
 export const getBanner = async (title: string) => {
     try {
         const response = await fetch(`${baseUrl}/api/cover?id=${title}`, {
-            method: 'GET',
-            headers: headers,
             next: {
                 revalidate: 3600
             }
@@ -119,8 +101,6 @@ export const getBanner = async (title: string) => {
 export const searchAnime = async (query: string) => {
     try {
         const response = await fetch(`${baseUrl}/api/search/${query}`, {
-            method: 'GET',
-            headers: headers,
             next: {
                 revalidate: 3600
             }
@@ -134,8 +114,6 @@ export const searchAnime = async (query: string) => {
 export const getNews = async () => {
     try {
         const response = await fetch(`${baseUrl}/api/news`, {
-            method: 'GET',
-            headers: headers,
             next: {
                 revalidate: 3600
             }

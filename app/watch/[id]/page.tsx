@@ -10,7 +10,6 @@ import { EpisodeInterface, TopInterface } from "@/types"
 import Image from "next/image"
 import { bannerBasePath, logoBasePath } from "@/utils/constants"
 import PrevNext from "../_components/PrevNext"
-import SelectEpisode from "../_components/SelectEpisode"
 import { Metadata } from "next"
 import { config } from "@/config"
 import Disqus from "../_components/Disqus"
@@ -93,7 +92,7 @@ export default async function WatchPage({ params }: Props) {
 
     return (
         <main>
-            <section className="relative -mt-20 h-[600px] md:h-[750px] xl:min-h-screen overflow-hidden w-full grid place-items-center">
+            <section className="relative -mt-20 h-[600px] md:h-[750px] xl:min-h-screen w-full grid place-items-center">
                 <div className="absolute top-0 left-0 w-full h-full z-[1]" />
                 {banner?.backdrops?.length > 0 && (
                     <Image
@@ -118,15 +117,7 @@ export default async function WatchPage({ params }: Props) {
                         }}
                     />
                 )}
-                <div className="container !px-2 sm:!px-5 mt-20 relative z-[2]">
-                    <SelectEpisode
-                        episodes={episodes}
-                        currentEpisode={currentEpisode} 
-                    />
-                    <Player 
-                        info={info} 
-                        source={source} 
-                    />
+                <div className="container !px-2 sm:!px-5 mt-14 relative z-[2]">
                     {source && (
                         <PrevNext 
                             info={info}
@@ -134,8 +125,11 @@ export default async function WatchPage({ params }: Props) {
                             currentEpisode={currentEpisode} 
                         />
                     )}
+                    <Player 
+                        info={info} 
+                        source={source} 
+                    />
                 </div>
-
             </section>
 
             {/* remove this section and delete disqus component if you dont have disqus shortname */}
