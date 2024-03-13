@@ -1,0 +1,69 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+    @apply text-white bg-black/90 ;
+}
+
+html {
+    @apply scroll-smooth scroll-p-20 xl:scroll-p-28;
+}
+
+.recent:nth-child(n+11) {
+    @apply xl:hidden
+}
+
+.first:first-child div h3, 
+.fourth:nth-child(4) div h3 {
+    @apply xl:text-3xl;
+}
+
+.first:first-child div h3, 
+.third:nth-child(3) div h3 {
+    @apply md:!text-3xl;
+}
+
+.third:nth-child(3) div h3 {
+    @apply xl:!text-sm
+}
+
+.fourth:nth-child(4) {
+    @apply xl:!h-[528px] xl:!col-span-2 xl:!row-span-2;
+}
+
+.first:nth-child(n+8),
+.fourth:nth-child(n+8) {
+    @apply xl:hidden;
+}
+
+.third:last-child,
+.first:last-child {
+    @apply md:hidden;
+}
+
+.third:nth-child(3) {
+    @apply md:h-[528px] xl:h-[250px] md:col-span-2 xl:col-span-1 md:row-span-2 xl:row-span-1;
+}
+
+::-webkit-scrollbar {
+    @apply hidden;
+}
+
+a {
+    @apply outline-none;
+}
+
+@layer utilities {
+    .container {
+        @apply max-w-7xl mx-auto px-5;
+    }
+
+    .btn {
+        @apply w-fit px-5 py-2 block tracking-wide hover:bg-cyan-800 transition-all border border-cyan-300 hover:border-cyan-800 hover:shadow-[0px_0px_5px_1px] hover:shadow-cyan-300;
+    }
+
+    .btn-primary {
+        @apply bg-cyan-500;
+    }
+}
