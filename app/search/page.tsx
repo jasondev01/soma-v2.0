@@ -48,7 +48,7 @@ export default async function SearchQueryPage({ searchParams }: Props) {
 
     if (!query) redirect("/search?q=anime") 
 
-    const results = await searchAnime(query)
+    // const results = await searchAnime(query)
 
     return (
         <main>
@@ -57,7 +57,7 @@ export default async function SearchQueryPage({ searchParams }: Props) {
                     Search Reults for <span className="text-cyan-300">{query}</span>:
                 </h2>
             </div>
-            <SearchCards data={results}/>
+            {/* <SearchCards data={results}/> */}
         </main>
     )
 }
