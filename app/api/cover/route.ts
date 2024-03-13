@@ -9,9 +9,13 @@ export async function GET(req: NextRequest) {
 
     try {
         const response = await fetch(`${tmdbApiUri}/tv/${searchParams.get("id")}/images`, {
+            method: "GET",
             headers: {
                 'Authorization': `Bearer ${tmdb_access_key}`,
                 'Accept': 'application/json'
+            },
+            next: {
+                revalidate: 0
             }
         })
 
