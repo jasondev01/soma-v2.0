@@ -12,8 +12,8 @@ Soma Version 2.0 is the latest iteration of my previous anime website, [**Soma V
 ## Local Development
 
 ```
-clone the repo
-cd soma-v2.0 // _you are free to rename and modify
+git clone https://github.com/jasondev01/soma-v2.0.git
+cd soma-v2.0
 npm install or yarn install
 ```
 
