@@ -40,18 +40,18 @@ export const metadata: Metadata = {
 }
 
 export default async function Home() {
-    // const [ topAiring, recent, popular ] = await Promise.all([
-    //     getTopAiring(),
-    //     getRecent(),
-    //     getPopular()
-    // ])
+    const [ topAiring, recent, popular ] = await Promise.all([
+        getTopAiring(),
+        getRecent(),
+        getPopular()
+    ])
 
     return (
         <main>
-            {/* <Banner data={topAiring}/>
+            <Banner data={topAiring}/>
             <Recent data={recent}/>
             <TopAiring data={topAiring}/>
-            <Popular data={popular}/> */}
+            <Popular data={popular}/>
         </main>
     )
 }
