@@ -22,77 +22,77 @@ type Props = {
 
 const { baseUrl } = config
 
-export async function generateMetadata({ params }: Props): Promise<Metadata> {
-    const { id } = params
+// export async function generateMetadata({ params }: Props): Promise<Metadata> {
+//     const { id } = params
     
-    let info = await getInfo(id.replace(/-episode-\d+(-\d+)?$/, ""))
+//     let info = await getInfo(id.replace(/-episode-\d+(-\d+)?$/, ""))
 
-    if (info.error) {
-        console.log(info.error)
-        const searchForAnime = await searchAnime(id.replace(/-episode-\d+(-\d+)?$/, ""))
-        info = await getInfo(searchForAnime[0]?.id)
-    }
+//     if (info.error) {
+//         console.log(info.error)
+//         const searchForAnime = await searchAnime(id.replace(/-episode-\d+(-\d+)?$/, ""))
+//         info = await getInfo(searchForAnime[0]?.id)
+//     }
 
-    const tmdbInfo: TopInterface = await getTMDBResource(info?.title?.replace('(Dub)', ''))
-    const banner = await getBanner(String(tmdbInfo?.id))
+//     const tmdbInfo: TopInterface = await getTMDBResource(info?.title?.replace('(Dub)', ''))
+//     const banner = await getBanner(String(tmdbInfo?.id))
 
-    if (!info) return {
-        title: 'Not Found',
-        description: "The page is not found"
-    }
+//     if (!info) return {
+//         title: 'Not Found',
+//         description: "The page is not found"
+//     }
 
-    const { image } = info
+//     const { image } = info
 
-    const title = `Watch ${id.split("-").map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(" ")}`
+//     const title = `Watch ${id.split("-").map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(" ")}`
 
-    return {
-        metadataBase: new URL(baseUrl as string),
-        title: title,
-        description: title,
-        alternates: {
-            canonical: `/watch/${id}`
-        },
-        openGraph: {
-            images: [
-                {
-                    url: banner?.backdrops?.length > 0 ? `${bannerBasePath}/${banner?.backdrops[0]?.file_path}` : image,
-                    width: 800,
-                    height: 600,
-                    alt: title,
-                },
-                {
-                    url: banner?.backdrops?.length > 0 ? `${bannerBasePath}/${banner?.backdrops[0]?.file_path}` : image,
-                    width: 1800,
-                    height: 1600,
-                    alt: title,
-                }
-            ],
-            url: `/watch/${id}`,
-            type: 'website',
-        },
-    }
-}
+//     return {
+//         metadataBase: new URL(baseUrl as string),
+//         title: title,
+//         description: title,
+//         alternates: {
+//             canonical: `/watch/${id}`
+//         },
+//         openGraph: {
+//             images: [
+//                 {
+//                     url: banner?.backdrops?.length > 0 ? `${bannerBasePath}/${banner?.backdrops[0]?.file_path}` : image,
+//                     width: 800,
+//                     height: 600,
+//                     alt: title,
+//                 },
+//                 {
+//                     url: banner?.backdrops?.length > 0 ? `${bannerBasePath}/${banner?.backdrops[0]?.file_path}` : image,
+//                     width: 1800,
+//                     height: 1600,
+//                     alt: title,
+//                 }
+//             ],
+//             url: `/watch/${id}`,
+//             type: 'website',
+//         },
+//     }
+// }
 
 export default async function WatchPage({ params }: Props) {
     const { id } = params
 
-    let info = await getInfo(id.replace(/-episode-\d+(-\d+)?$/, ""))
-    const source = await getSources(id)
+    // let info = await getInfo(id.replace(/-episode-\d+(-\d+)?$/, ""))
+    // const source = await getSources(id)
 
-    if (info.error) {
-        const searchForAnime = await searchAnime(id.replace(/-episode-\d+(-\d+)?$/, ""))
-        info = await getInfo(searchForAnime[0]?.id)
-    }
+    // if (info.error) {
+    //     const searchForAnime = await searchAnime(id.replace(/-episode-\d+(-\d+)?$/, ""))
+    //     info = await getInfo(searchForAnime[0]?.id)
+    // }
 
-    const tmdbInfo: TopInterface = await getTMDBResource((info?.title?.replace('(Dub)', '')))
-    const banner = await getBanner(String(tmdbInfo?.id))
+    // const tmdbInfo: TopInterface = await getTMDBResource((info?.title?.replace('(Dub)', '')))
+    // const banner = await getBanner(String(tmdbInfo?.id))
 
-    const episodes: EpisodeInterface[] = info?.episodes
-    const currentEpisode = episodes?.findIndex(episode => episode?.id === id)
+    // const episodes: EpisodeInterface[] = info?.episodes
+    // const currentEpisode = episodes?.findIndex(episode => episode?.id === id)
 
     return (
         <main>
-            <section className="relative -mt-20 h-[600px] md:h-[750px] xl:min-h-screen w-full grid place-items-center">
+            {/* <section className="relative -mt-20 h-[600px] md:h-[750px] xl:min-h-screen w-full grid place-items-center">
                 <div className="absolute top-0 left-0 w-full h-full z-[1]" />
                 {banner?.backdrops?.length > 0 && (
                     <Image
@@ -130,16 +130,16 @@ export default async function WatchPage({ params }: Props) {
                         source={source} 
                     />
                 </div>
-            </section>
+            </section> */}
 
             {/* remove this section and delete disqus component if you dont have disqus shortname */}
             <section>
                 <div className="container mt-10">
-                    <Disqus 
+                    {/* <Disqus 
                         episodeId={id}
                         episodes={episodes}
                         currentEpisode={currentEpisode} 
-                    />
+                    /> */}
                 </div>  
             </section>
         </main>
