@@ -57,6 +57,7 @@ export default function SearchFunction() {
         e.preventDefault()
         
         setQuery('')
+        if (!query) return router.push('/search?q=anime')
         router.push(`/search?q=${query}`)
     }
 

@@ -38,4 +38,4 @@ If you are deploying to vercel. Make sure to set ENVIRONMENT VARIABLE `NEXT_PUBL
 
 ## Disclaimer
 
-This is a personal project intended for educational reference and/or purposes. The project is open-source and licensed under the MIT license.
+This is a personal project intended for educational reference and/or purposes. The project is open-source and licensed under the MIT.

@@ -18,7 +18,7 @@ export default async function NewsPage() {
                     {data?.map(news => (
                         <div className="" key={news?.url} >
                             <Link 
-                                href={`/info/${news?.id}`}
+                                href={news?.url}
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className="block relative h-[250px] font-bold group overflow-hidden border border-transparent  hover:shadow-[0px_0px_5px_1px] hover:border-cyan-300 hover:shadow-cyan-300 transition-all duration-300"

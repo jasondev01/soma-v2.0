@@ -2,7 +2,6 @@ import { searchAnime } from "@/utils/get-anime"
 import SearchCards from "./_components/SearchCards"
 import { Metadata } from "next"
 import { config } from "@/config"
-import { redirect } from "next/navigation"
 
 type Props = {
     searchParams: {
@@ -45,8 +44,6 @@ export function generateMetadata({ searchParams }: Props): Metadata {
 
 export default async function SearchQueryPage({ searchParams }: Props) {
     const { q: query } = searchParams
-
-    if (!query) redirect("/search?q=anime") 
 
     const results = await searchAnime(query)
 

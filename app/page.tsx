@@ -12,7 +12,7 @@ export const metadata: Metadata = {
     metadataBase: new URL(baseUrl as string),
     title: 'Soma | Watch and Stream Anime Ad Free',
     description: "Watch and stream popular, top airing and recent animes ad free here in soma.",
-    keywords: 'add free anime, watch and stream, watch for free, free anime, consumet, anime project',
+    keywords: 'ad free anime, watch and stream, watch for free, free anime, consumet, anime project',
     alternates: {
         canonical: '/'
     },
