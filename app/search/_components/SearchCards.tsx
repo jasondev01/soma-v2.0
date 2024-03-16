@@ -39,14 +39,20 @@ export default function SearchCards({ data }: Props) {
                     ))}
                 </div>
             ): (
-                <div className="w-full min-h-[calc(100vh-401px)] grid place-items-center overflow-hidden"> 
-                    <Image 
-                        src="/not-found.jpg"
-                        alt="anime not found"
-                        width={1200}
-                        height={1200}
-                        className="object-cover h-full w-full"
-                    /> 
+                <div className="w-full h-[calc(100vh-401px)] grid place-items-center overflow-hidden"> 
+                    <div className="w-full h-full relative grid place-items-center">
+                        <div className="absolute top-0 left-0 w-full h-full z-[1]" />
+                        <Image 
+                            src="/404.webp"
+                            alt="anime not found"
+                            width={400}
+                            height={400}
+                            className="object-contain object-center"
+                        /> 
+                        <span className="text-3xl font-bold bottom-1/2 uppercase absolute right-1/2 translate-y-1/2 translate-x-1/2 text-white z-10 -rotate-[15deg] text-shadow">
+                            404 anime not found
+                        </span>
+                    </div>
                 </div>
             )}
         </div>

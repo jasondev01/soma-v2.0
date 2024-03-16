@@ -29,7 +29,7 @@ export default async function Banner({ data }: Props) {
             )}
             <div className="container mt-14 flex justify-between lg:gap-x-2 items-center h-full relative z-[2]">
                 <div className="flex-1 shrink-0">
-                    <h2 className="text-2xl font-semibold text-white" style={{ textShadow: "0px 4px 4px rgba(103, 232, 249, 0.5)" }}>
+                    <h2 className="text-2xl font-semibold text-white text-shadow" >
                         {data[0]?.title } {data[0]?.title ? " / " : ''} {top?.original_name}
                     </h2>
                     <span className="text-[11px] mt-1">

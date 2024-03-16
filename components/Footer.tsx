@@ -10,7 +10,7 @@ const footerMenus = [
 
 export default function Footer() {
     return (        
-        <footer className='mt-16'>
+        <footer className='mt-16 bg-black'>
             <div className='container pt-10 pb-5'>
                 <Link href='/' className="block w-fit mx-auto text-2xl font-bold tracking-wide">
                     soma-tv.

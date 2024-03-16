@@ -16,6 +16,7 @@ export default function PrevNext({ info, episodes, currentEpisode }: Props) {
     return (
         <div className="mb-2 flex justify-between h-10">
             <SelectEpisode
+                info={info}
                 episodes={episodes}
                 currentEpisode={currentEpisode} 
             />
@@ -30,7 +31,7 @@ export default function PrevNext({ info, episodes, currentEpisode }: Props) {
                         xmlns="http://www.w3.org/2000/svg"
                         viewBox="0 0 512.000000 512.000000"
                         preserveAspectRatio="xMidYMid meet"
-                        className="h-8 w-8 fill-white/50 group-hover/left:fill-white/100 group-hover/left:scale-[97%] transition-all"
+                        className="h-6 md:h-8 w-6 md:w-8 fill-white/50 group-hover/left:fill-white/100 group-hover/left:scale-[97%] transition-all"
                         stroke="#fff "
                         fill="none"
                     >
@@ -47,7 +48,7 @@ export default function PrevNext({ info, episodes, currentEpisode }: Props) {
             
                 <Link 
                     href={nextEpisode ? `/watch/${nextEpisode?.id}` : `/info/${info?.id}`} 
-                    className="px-2 w-fit grid place-items-center rounded-sm bg-black/50 shadow-none hover:shadow-[0_0_10px_-4px] border border-transparent hover:border-cyan-300/70 hover:shadow-cyan-300 hover:bg-black hover:scale-[97%] transition-all  group/right"
+                    className={`w-fit grid place-items-center rounded-sm bg-black/50 shadow-none hover:shadow-[0_0_10px_-4px] border border-transparent hover:border-cyan-300/70 hover:shadow-cyan-300 hover:bg-black hover:scale-[97%] transition-all group/right ${nextEpisode ? "px-2" : "px-3"}`}
                     title={nextEpisode ? 'Next Episode' : 'Info'}
                 >
                     <span className="sr-only">{nextEpisode ? 'Next Episode' : 'Info'}</span>
@@ -56,7 +57,7 @@ export default function PrevNext({ info, episodes, currentEpisode }: Props) {
                             xmlns="http://www.w3.org/2000/svg"
                             viewBox="0 0 512.000000 512.000000"
                             preserveAspectRatio="xMidYMid meet"
-                            className="h-8 w-8 fill-white/50 group-hover/right:fill-white transition-all"
+                            className="h-6 md:h-8 w-6 md:w-8 fill-white/50 group-hover/right:fill-white transition-all"
                             stroke="#fff"
                             fill="none"
                         >
@@ -73,7 +74,7 @@ export default function PrevNext({ info, episodes, currentEpisode }: Props) {
                         <svg 
                             xmlns="http://www.w3.org/2000/svg" 
                             viewBox="0 0 48 48"
-                            className="h-7 w-7 fill-white/50 group-hover/right:fill-white transition-all"
+                            className="h-4 md:h-5 w-4 md:w-5 fill-white/50 group-hover/right:fill-white transition-all"
                             stroke="#fff"
                             fill="none"
                         >

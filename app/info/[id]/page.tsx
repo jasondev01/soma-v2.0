@@ -5,6 +5,7 @@ import { Metadata } from "next"
 import { config } from "@/config"
 import { TopInterface } from "@/types"
 import { bannerBasePath } from "@/utils/constants"
+import { notFound } from "next/navigation"
 
 type Props = {
     params: {
@@ -33,26 +34,27 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     return {
         metadataBase: new URL(baseUrl as string),
         title: title,
-        description: description,
+        description: description?.slice(0, 170),
         alternates: {
             canonical: `/info/${animeId}`
         },
         openGraph: {
             images: [
                 {
-                    url: banner?.backdrops[0] ? `${bannerBasePath}/${banner?.backdrops[0]?.file_path}` : image,
+                    url: banner?.success ? `${bannerBasePath}/${banner.backdrops[0].file_path}` : image,
                     width: 800,
                     height: 600,
                     alt: title,
                 },
                 {
-                    url: banner?.backdrops[0] ? `${bannerBasePath}/${banner?.backdrops[0]?.file_path}` : image,
+                    url: banner?.success ? `${bannerBasePath}/${banner.backdrops[0].file_path}` : image,
                     width: 1800,
                     height: 1600,
                     alt: title,
                 }
             ],
             url: `/info/${animeId}`,
+            type: 'website'
         },
     }
 }
@@ -60,6 +62,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 export default async function InfoPage({ params }: Props) {
     const { id } = params
     const info = await getInfo(id)
+
+    if(info.error) return notFound()
 
     return (
         <main>

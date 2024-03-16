@@ -6,10 +6,11 @@ import SearchFunction from './SearchFunction'
 import { usePathname, useRouter } from 'next/navigation'
 
 const menus = [
-    { menu: 'news', href: '/news' },
+    { menu: 'Home', href: '/' },
     { menu: 'recent', href: '/#recent' },
     { menu: 'top airing', href: '/#top-airing' },
     { menu: 'popular', href: '/#popular' },
+    { menu: 'news', href: '/news' },
 ]
 
 export default function Nav() {
@@ -114,3 +115,4 @@ export default function Nav() {
         </header>
     )
 }
+    

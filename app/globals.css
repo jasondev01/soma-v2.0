@@ -50,8 +50,20 @@ html {
     @apply hidden;
 }
 
+.select_scroll::-webkit-scrollbar {
+    @apply !block;
+}
+
+.select_scroll::-webkit-scrollbar-thumb {
+    @apply w-1 bg-cyan-300 cursor-grab;
+}
+
 a {
     @apply outline-none;
+}
+
+.text-shadow {
+    text-shadow: 0px 4px 4px rgba(103, 232, 249, 0.5);
 }
 
 @layer utilities {

@@ -9,9 +9,10 @@ export default function Loading() {
                 <Image 
                     src="/loading-bar.svg"
                     height={50}
-                    width={100}
+                    width={50}
                     alt='loading bar'
                     className='object-contain'
+                    unoptimized={true}
                 />
             </div>
         </>

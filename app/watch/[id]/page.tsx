@@ -13,6 +13,7 @@ import PrevNext from "../_components/PrevNext"
 import { Metadata } from "next"
 import { config } from "@/config"
 import Disqus from "../_components/Disqus"
+import { notFound } from "next/navigation"
 
 type Props = {
     params: {
@@ -48,7 +49,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     return {
         metadataBase: new URL(baseUrl as string),
         title: title,
-        description: title,
+        description: title?.slice(0, 170),
         alternates: {
             canonical: `/watch/${id}`
         },
@@ -79,6 +80,8 @@ export default async function WatchPage({ params }: Props) {
     let info = await getInfo(id.replace(/-episode-\d+(-\d+)?$/, ""))
     const source = await getSources(id)
 
+    if (!source || source?.error) return notFound()
+
     if (info.error) {
         const searchForAnime = await searchAnime(id.replace(/-episode-\d+(-\d+)?$/, ""))
         info = await getInfo(searchForAnime[0]?.id)
@@ -92,7 +95,7 @@ export default async function WatchPage({ params }: Props) {
 
     return (
         <main>
-            <section className="relative -mt-20 h-[600px] md:h-[750px] xl:min-h-screen w-full grid place-items-center">
+            <section className="relative -mt-20 h-[650px] md:h-[750px] xl:min-h-screen w-full grid place-items-center">
                 <div className="absolute top-0 left-0 w-full h-full z-[1]" />
                 {banner?.backdrops?.length > 0 && (
                     <Image
@@ -106,18 +109,31 @@ export default async function WatchPage({ params }: Props) {
                     />
                 )}
                 {banner?.logos?.length > 0 && (
-                    <Image
-                        src={`${logoBasePath}/${banner?.logos[0]?.file_path}`}
-                        alt={`${info?.title} Logo`}
-                        width={250}
-                        height={250}
-                        className="object-contain object-center drop-shadow-md mb-5 absolute left-16 z-[1]"
-                        style={{
-                            filter: "drop-shadow(0px 4px 4px rgba(103, 232, 249, 1)",
-                        }}
-                    />
+                    <>
+                        <Image
+                            src={`${logoBasePath}/${banner?.logos[0]?.file_path}`}
+                            alt={`${info?.title} Logo`}
+                            width={250}
+                            height={250}
+                            className="object-contain object-center drop-shadow-md mb-5 absolute left-16 z-[1]"
+                            style={{
+                                filter: "drop-shadow(0px 4px 4px rgba(103, 232, 249, 1)",
+                            }}
+                        />
+
+                        <Image
+                            src={`${logoBasePath}/${banner?.logos[0]?.file_path}`}
+                            alt={`${info?.title} Logo`}
+                            width={250}
+                            height={250}
+                            className="object-contain object-center drop-shadow-md absolute top-14 md:top-4 right-1/2 translate-x-1/2 z-[1]"
+                            style={{
+                                filter: "drop-shadow(0px 4px 4px rgba(103, 232, 249, 1)",
+                            }}
+                        />
+                    </>
                 )}
-                <div className="container !px-2 sm:!px-5 mt-14 relative z-[2]">
+                <div className="container !px-2 sm:!px-5 mt-20 md:mt-14 relative z-[2]">
                     {source && (
                         <PrevNext 
                             info={info}
