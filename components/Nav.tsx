@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { FormEvent, useEffect, useState } from 'react'
 import SearchFunction from './SearchFunction'
 import { usePathname, useRouter } from 'next/navigation'
+import Image from 'next/image'
 
 const menus = [
     { menu: 'Home', href: '/' },
@@ -82,7 +83,20 @@ export default function Nav() {
                     </Link>
                 </div>
                 <div className={`w-full fixed top-0 h-screen bg-black/80 backdrop-blur-sm md:backdrop-blur-none md:bg-transparent md:flex-1 md:flex md:items-center md:static md:h-fit transition-all duration-200 ${isMobileMenuOpen ? 'right-0 ': '-right-[100%]'}`}>
-                    <ul className='flex-1 flex gap-4 md:ml-5 xl:ml-10 h-full flex-col justify-center items-center w-[80%] mx-auto md:mx-0 md:w-full md:items-center md:flex-row md:justify-normal md:h-fit'>
+                    <div className='block md:hidden w-[70%] mx-auto pt-28 text-center'>
+                        <Link href="https://www.buymeacoffee.com/somae" target='_blank' className='text-base/[22px] uppercase font-semibold transition-all hover:bg-cyan-300 tracking-wide h-fit p-2 block relative'>
+                            Donate
+                            <Image 
+                                src="/heart.svg"
+                                alt='heart donation'
+                                width={20}
+                                height={20}
+                                className='animate-ping absolute top-[25%] left-[45%] translate-x-[45%]'
+                                unoptimized
+                            />
+                        </Link>
+                    </div> 
+                    <ul className='flex-1 flex gap-4 md:ml-5 xl:ml-10 h-full flex-col justify-center items-center -mt-40 w-[70%] mx-auto md:mt-0 md:mx-0 md:w-full md:items-center md:flex-row md:justify-normal md:h-fit'>
                         {menus.map(menu => (
                             <li key={menu.menu} className={`font-bold uppercase text-2xl md:text-xs hover:text-cyan-300 transition-all tracking-wider ${activeNav === menu.menu ? "text-cyan-300" : ""}`}
                                 onClick={() => handleNavClick(menu.menu)}
@@ -101,8 +115,21 @@ export default function Nav() {
                                 onChange={(e) => setQuery(e.target.value)}
                             />
                         </form>
-                    </ul>       
-                    <SearchFunction />
+                    </ul> 
+                    <div className='hidden md:flex gap-1 justify-self-end items-center'>
+                        <SearchFunction />
+                        <Link href="https://www.buymeacoffee.com/somae" target='_blank' className='text-xs/[22px] uppercase font-semibold transition-all hover:bg-cyan-300 tracking-wide h-fit p-2 block relative'>
+                            Donate
+                            <Image 
+                                src="/heart.svg"
+                                alt='heart donation'
+                                width={20}
+                                height={20}
+                                className='animate-ping absolute top-[25%] right-[40%]'
+                                unoptimized
+                            />
+                        </Link>
+                    </div>      
                 </div>
                 <div className="flex flex-col gap-[2.5px] md:hidden relative z-20 cursor-pointer"
                     onClick={() => setIsMobileMenuOpen(prev => !prev)}
@@ -115,4 +142,3 @@ export default function Nav() {
         </header>
     )
 }
-    
