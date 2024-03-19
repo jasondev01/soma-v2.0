@@ -4,7 +4,7 @@ import Image from "next/image"
 import Link from "next/link"
 
 export default async function NewsPage() {
-    const data: NewsAnnInterface[] = await getNews()
+    // const data: NewsAnnInterface[] = await getNews()
 
     return (
         <main>
@@ -13,7 +13,7 @@ export default async function NewsPage() {
                     Recent News
                 </h2>
             </div>
-            <div className="container min-h-[calc(100vh-401px)]">
+            {/* <div className="container min-h-[calc(100vh-401px)]">
                 <div className="grid grid-cols-2 md:grid-cols-4 xl:grid-cols-5 gap-x-5 gap-y-7">
                     {data?.map(news => (
                         <div className="" key={news?.url} >
@@ -49,7 +49,7 @@ export default async function NewsPage() {
                         
                     ))}
                 </div>
-            </div>
+            </div> */}
         </main>
     )
 }

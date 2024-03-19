@@ -11,41 +11,41 @@ type Props = {
 
 const { baseUrl } = config
 
-export function generateMetadata({ searchParams }: Props): Metadata {
-    const { q: query } = searchParams
+// export function generateMetadata({ searchParams }: Props): Metadata {
+//     const { q: query } = searchParams
 
-    return {
-        metadataBase: new URL(baseUrl as string),
-        title: `Search Results for ${query}`,
-        description: `Search Results for ${query}`,
-        alternates: {
-            canonical: `/search?q=${query}`
-        },
-        openGraph: {
-            images: [
-                {
-                    url: '/soma-og.webp',
-                    width: 800,
-                    height: 600,
-                    alt: 'Soma TV',
-                },
-                {
-                    url: '/soma-og.webp',
-                    width: 1800,
-                    height: 1600,
-                    alt: 'Soma TV',
-                },
-            ],
-            url: `/search?q=${query}`,
-            type: 'website',
-        },
-    }
-}
+//     return {
+//         metadataBase: new URL(baseUrl as string),
+//         title: `Search Results for ${query}`,
+//         description: `Search Results for ${query}`,
+//         alternates: {
+//             canonical: `/search?q=${query}`
+//         },
+//         openGraph: {
+//             images: [
+//                 {
+//                     url: '/soma-og.webp',
+//                     width: 800,
+//                     height: 600,
+//                     alt: 'Soma TV',
+//                 },
+//                 {
+//                     url: '/soma-og.webp',
+//                     width: 1800,
+//                     height: 1600,
+//                     alt: 'Soma TV',
+//                 },
+//             ],
+//             url: `/search?q=${query}`,
+//             type: 'website',
+//         },
+//     }
+// }
 
 export default async function SearchQueryPage({ searchParams }: Props) {
     const { q: query } = searchParams
 
-    const results = await searchAnime(query)
+    // const results = await searchAnime(query)
 
     return (
         <main>
@@ -54,7 +54,7 @@ export default async function SearchQueryPage({ searchParams }: Props) {
                     Search Reults for <span className="text-cyan-300">{query}</span>:
                 </h2>
             </div>
-            <SearchCards data={results}/>
+            {/* <SearchCards data={results}/> */}
         </main>
     )
 }
