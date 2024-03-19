@@ -10,10 +10,6 @@ html {
     @apply scroll-smooth scroll-p-20 xl:scroll-p-28;
 }
 
-.recent:nth-child(n+11) {
-    @apply xl:hidden
-}
-
 .first:first-child div h3, 
 .fourth:nth-child(4) div h3 {
     @apply xl:text-3xl;

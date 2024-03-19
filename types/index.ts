@@ -51,8 +51,8 @@ export interface InfoInterface {
 
 export interface EpisodeInterface {
     id: string
-    number: number
-    url: string
+    number?: number
+    url?: string
 }
 
 export interface SourceInterface {
@@ -82,4 +82,11 @@ export interface NewsAnnInterface {
     uploadedAt: string
     thumbnail: string
     url: string
+}
+
+export interface WatchedInterface {
+    id: string;
+    title: string;
+    image: string;
+    ep: EpisodeInterface[]
 }

@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server"
 import { config } from "@/config"
 
-const { gogo } = config
+const { gogo, authorization_key } = config
 
 type Props = {
     params: {
@@ -11,8 +11,13 @@ type Props = {
 
 export async function GET(req: NextRequest, { params }: Props) {
     const { id } = params
+    const authorization = req.headers.get("Authorization")
     
     try {
+        if (!authorization || authorization_key !== authorization.split(" ")[1]) {
+            return NextResponse.json({ message: "Unauthorized" }, { status: 401 })
+        }
+        
         const response = await gogo.fetchAnimeInfo(id)
 
         return NextResponse.json(response)

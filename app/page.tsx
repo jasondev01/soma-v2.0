@@ -5,6 +5,7 @@ import Popular from "@/components/Popular"
 import { getPopular, getRecent, getTopAiring } from "@/utils/get-anime"
 import { Metadata } from "next"
 import { config } from "@/config"
+import Watched from "@/components/Watched"
 
 const { baseUrl } = config
 
@@ -49,6 +50,7 @@ export default async function Home() {
     return (
         <main>
             <Banner data={topAiring}/>
+            <Watched />
             <Recent data={recent}/>
             <TopAiring data={topAiring}/>
             <Popular data={popular}/>

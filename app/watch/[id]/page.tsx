@@ -14,6 +14,7 @@ import { Metadata } from "next"
 import { config } from "@/config"
 import Disqus from "../_components/Disqus"
 import { notFound } from "next/navigation"
+import SetWatchedHistory from "../_components/SetWatchedHistory"
 
 type Props = {
     params: {
@@ -144,6 +145,11 @@ export default async function WatchPage({ params }: Props) {
                     <Player 
                         info={info} 
                         source={source} 
+                    />
+                    <SetWatchedHistory
+                        info={info}
+                        episodes={episodes}
+                        currentEpisode={currentEpisode}
                     />
                 </div>
             </section>

@@ -1,10 +1,16 @@
 import { config } from "../config"
 
-const { baseUrl } = config
+const { baseUrl, authorization_key } = config
+
+const headers = new Headers({
+    'Accept': 'application/json',
+    'Authorization': `Bearer ${authorization_key}`,
+})
 
 export const getRecent = async () => {
     try {
         const response = await fetch(`${baseUrl}/api/recent`, {
+            headers: headers,
             next: {
                 revalidate: 120 // two minutes
             }
@@ -19,6 +25,7 @@ export const getRecent = async () => {
 export const getTopAiring = async () => {
     try {
         const response = await fetch(`${baseUrl}/api/top-airing`, {
+            headers: headers,
             next: {
                 revalidate: 120 // two minutes
             }
@@ -33,7 +40,7 @@ export const getTopAiring = async () => {
 export const getPopular = async () => {
     try {
         const response = await fetch(`${baseUrl}/api/popular`, {
-
+            headers: headers,
             next: {
                 revalidate: 120 // two minutes
             }
@@ -48,6 +55,7 @@ export const getPopular = async () => {
 export const getInfo = async (id: string) => {
     try {
         const response = await fetch(`${baseUrl}/api/info/${id}`, {
+            headers: headers,
             next: {
                 revalidate: 120 // two minutes
             }
@@ -62,6 +70,7 @@ export const getInfo = async (id: string) => {
 export const getSources = async (id: string) => {
     try {
         const response = await fetch(`${baseUrl}/api/watch/${id}`, {
+            headers: headers,
             next: {
                 revalidate: 120 // two minutes
             }
@@ -75,6 +84,7 @@ export const getSources = async (id: string) => {
 export const getTMDBResource = async (title: string) => {
     try {
         const response = await fetch(`${baseUrl}/api/tmdb?query=${title}`, {
+            headers: headers,
             next: {
                 revalidate: 120 // two minutes
             }
@@ -88,6 +98,7 @@ export const getTMDBResource = async (title: string) => {
 export const getBanner = async (title: string) => {
     try {
         const response = await fetch(`${baseUrl}/api/cover?id=${title}`, {
+            headers: headers,
             next: {
                 revalidate: 120 // two minutes
             }
@@ -101,6 +112,7 @@ export const getBanner = async (title: string) => {
 export const searchAnime = async (query: string) => {
     try {
         const response = await fetch(`${baseUrl}/api/search/${query}`, {
+            headers: headers,
             next: {
                 revalidate: 120 // two minutes
             }
@@ -114,6 +126,7 @@ export const searchAnime = async (query: string) => {
 export const getNews = async () => {
     try {
         const response = await fetch(`${baseUrl}/api/news`, {
+            headers: headers,
             next: {
                 revalidate: 120 // two minutes
             }

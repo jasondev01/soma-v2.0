@@ -1,8 +1,9 @@
 'use client'
 
-import { EpisodeInterface, InfoInterface } from "@/types"
+import { EpisodeInterface, InfoInterface, WatchedInterface } from "@/types"
+import useLocalStorage from "@/utils/localStorage";
 import Link from "next/link";
-import { useState } from "react"
+import { useLayoutEffect, useState } from "react"
 
 type Props = {
     data: InfoInterface
@@ -11,6 +12,16 @@ type Props = {
 export default function Episodes({ data }: Props) { 
     const [ displayedEpisodes, setDisplayedEpisodes ] = useState<EpisodeInterface[]>([])
     const [ activeRange, setActiveRange ] = useState<number>()
+    const [ watched, setWatched ]  = useState<WatchedInterface>()
+    const { getWatched } = useLocalStorage()
+
+    useLayoutEffect(() => {
+        const watchedAnime: WatchedInterface[] = getWatched()
+        const anime = watchedAnime.filter(anime => anime?.id === data?.id)[0]
+        setWatched(anime)
+    }, [])
+
+    console.log({data})
 
     const rangeSize = 200
     const totalEpisodes = data?.episodes?.length
@@ -29,6 +40,10 @@ export default function Episodes({ data }: Props) {
         const episodesToShow = data.episodes.slice(start, end + 1)
         setDisplayedEpisodes(episodesToShow)
         setActiveRange(i)
+    }
+
+    const isEpisodeWatched = (episodeId: string) => {
+        return watched?.ep.some((ep) => ep.id === episodeId)
     }
 
     return (
@@ -52,13 +67,13 @@ export default function Episodes({ data }: Props) {
                 <div className="mt-4 grid grid-cols-3 md:grid-cols-6 xl:grid-cols-9 gap-x-2 md:gap-x-5 gap-y-3 text-sm uppercase text-center">
                     {totalEpisodes > 200 ? (
                         displayedEpisodes?.slice()?.reverse().map(ep => (
-                            <Link key={ep.number} href={`/watch/${ep?.id}`} className="btn btn-primary !px-2 !w-full">
+                            <Link key={ep?.number} href={`/watch/${ep?.id}`} className={`btn btn-primary !px-2 !w-full ${isEpisodeWatched(ep.id) ? "!bg-cyan-800" : ""}`}>
                                 Ep {ep?.number}
                             </Link>
                         ))
                     ): data?.episodes?.length > 0 ? (
                         data?.episodes?.slice()?.reverse()?.map(ep => (
-                            <Link key={ep.number} href={`/watch/${ep?.id}`} className="btn btn-primary !px-2 !w-full">
+                            <Link key={ep?.number} href={`/watch/${ep?.id}`} className={`btn btn-primary !px-2 !w-full ${isEpisodeWatched(ep.id) ? "!bg-cyan-800" : ""}`}>
                                 Ep {ep?.number}
                             </Link>
                         ))

@@ -1,15 +1,19 @@
-import { NextResponse } from "next/server"
+import { NextRequest, NextResponse } from "next/server"
 import { config } from "@/config"
-import { Topics } from "@consumet/extensions";
+import { Topics } from "@consumet/extensions"
 
-const { ann } = config
+const { ann, authorization_key } = config
 
-export async function GET(){
-
+export async function GET(req: NextRequest){
+    const authorization = req.headers.get("Authorization")
+    
     try {
-        const response = await ann.fetchNewsFeeds(Topics.ANIME)
+        if (!authorization || authorization_key !== authorization.split(" ")[1]) {
+            return NextResponse.json({ message: "Unauthorized" }, { status: 401 })
+        }
 
-        return NextResponse.json(response, { status: 200 })
+        const response = await ann.fetchNewsFeeds(Topics.ANIME)
+        return NextResponse.json(response.slice(0, 20), { status: 200 }, )
     } catch (error) {
         return NextResponse.json({ error, message: `This just happed in news api route ${error}` })
     }

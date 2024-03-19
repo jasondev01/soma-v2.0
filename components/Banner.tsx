@@ -54,7 +54,8 @@ export default async function Banner({ data }: Props) {
                         </Link>
                     </div>
                 </div>
-                <div className="hidden md:flex justify-end w-fit">
+                <div className="hidden md:flex justify-end w-fit relative">
+                    <div className="w-full h-full absolute top-0 left-0 z-[1]" />
                     {banner?.logos?.length > 0 && (
                         <Image
                             src={`${logoBasePath}/${random(banner?.logos)?.file_path}`}
@@ -70,3 +71,4 @@ export default async function Banner({ data }: Props) {
         </section>
     )
 }
+    

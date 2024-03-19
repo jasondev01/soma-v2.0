@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from "next/server"
 import { config } from "@/config"
 import { IAnimeResult } from "@consumet/extensions"
 
-const { gogo } = config
+const { gogo, authorization_key } = config
 
 type Props = {
     params: {
@@ -12,8 +12,13 @@ type Props = {
 
 export async function GET(req: NextRequest, { params }: Props) {
     const { query } = params
+    const authorization = req.headers.get("Authorization")
     
     try {
+        if (!authorization || authorization_key !== authorization.split(" ")[1]) {
+            return NextResponse.json({ message: "Unauthorized" }, { status: 401 })
+        }
+
         let allResults: IAnimeResult[] = []
         let currentPage = 1
 
@@ -29,6 +34,6 @@ export async function GET(req: NextRequest, { params }: Props) {
 
         return NextResponse.json(allResults)
     } catch (error) {
-        return NextResponse.json({ message: `An error occurred in search/[query] route: ${error}` });
+        return NextResponse.json({ message: `An error occurred in search/[query] route: ${error}` })
     }
 }

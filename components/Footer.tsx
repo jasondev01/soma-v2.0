@@ -5,7 +5,7 @@ const footerMenus = [
     { menu: '•', href: '' },
     { menu: 'DMCA', href: '/dmca' },
     { menu: '•', href: '' },
-    { menu: 'GitHub', href: 'https://github.com/jasondev01' },
+    { menu: 'GitHub', href: 'https://github.com/jasondev01/soma-v2.0' },
 ]
 
 export default function Footer() {

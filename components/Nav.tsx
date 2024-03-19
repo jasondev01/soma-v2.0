@@ -83,20 +83,7 @@ export default function Nav() {
                     </Link>
                 </div>
                 <div className={`w-full fixed top-0 h-screen bg-black/80 backdrop-blur-sm md:backdrop-blur-none md:bg-transparent md:flex-1 md:flex md:items-center md:static md:h-fit transition-all duration-200 ${isMobileMenuOpen ? 'right-0 ': '-right-[100%]'}`}>
-                    <div className='block md:hidden w-[70%] mx-auto pt-28 text-center'>
-                        <Link href="https://www.buymeacoffee.com/somae" target='_blank' className='text-base/[22px] uppercase font-semibold transition-all hover:bg-cyan-300 tracking-wide h-fit p-2 block relative'>
-                            Donate
-                            <Image 
-                                src="/heart.svg"
-                                alt='heart donation'
-                                width={20}
-                                height={20}
-                                className='animate-ping absolute top-[25%] left-[45%] translate-x-[45%]'
-                                unoptimized
-                            />
-                        </Link>
-                    </div> 
-                    <ul className='flex-1 flex gap-4 md:ml-5 xl:ml-10 h-full flex-col justify-center items-center -mt-40 w-[70%] mx-auto md:mt-0 md:mx-0 md:w-full md:items-center md:flex-row md:justify-normal md:h-fit'>
+                    <ul className='flex-1 flex gap-4 md:ml-5 xl:ml-10 h-full flex-col justify-center items-center -mt-24 w-[70%] mx-auto md:mt-0 md:mx-0 md:w-full md:items-center md:flex-row md:justify-normal md:h-fit'>
                         {menus.map(menu => (
                             <li key={menu.menu} className={`font-bold uppercase text-2xl md:text-xs hover:text-cyan-300 transition-all tracking-wider ${activeNav === menu.menu ? "text-cyan-300" : ""}`}
                                 onClick={() => handleNavClick(menu.menu)}
@@ -116,6 +103,30 @@ export default function Nav() {
                             />
                         </form>
                     </ul> 
+                    <div className='block md:hidden w-[70%] mx-auto text-center'>
+                        <Link href="https://www.buymeacoffee.com/somae" target='_blank' className='text-base/[22px] uppercase font-semibold tracking-wide h-fit p-2 block relative'>
+                            Donate
+                            <Image 
+                                src="/heart.svg"
+                                alt='heart donation'
+                                width={20}
+                                height={20}
+                                className='animate-ping absolute top-[25%] left-[45%] translate-x-[45%]'
+                                unoptimized
+                            />
+                        </Link>
+                        <span className='text-xs tracking-wide font-semibold mt-2 flex gap-1 w-full justify-center'>
+                            Built with  
+                            <Image 
+                                src="/heart.svg"
+                                alt='built with love'
+                                width={10}
+                                height={10}
+                                className='object-contain !fill-black text-black'
+                                unoptimized
+                            />
+                        </span>
+                    </div> 
                     <div className='hidden md:flex gap-1 justify-self-end items-center'>
                         <SearchFunction />
                         <Link href="https://www.buymeacoffee.com/somae" target='_blank' className='text-xs/[22px] uppercase font-semibold transition-all hover:bg-cyan-300 tracking-wide h-fit p-2 block relative'>
@@ -125,7 +136,7 @@ export default function Nav() {
                                 alt='heart donation'
                                 width={20}
                                 height={20}
-                                className='animate-ping absolute top-[25%] right-[40%]'
+                                className='animate-ping absolute top-[25%] right-[35%]'
                                 unoptimized
                             />
                         </Link>

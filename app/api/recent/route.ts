@@ -1,10 +1,16 @@
 import { config } from "@/config"
-import { NextResponse } from "next/server"
+import { NextRequest, NextResponse } from "next/server"
 
-const{ gogo } = config
+const{ gogo, authorization_key } = config
 
-export async function GET() {
+export async function GET(req: NextRequest) {
+    const authorization = req.headers.get("Authorization")
+    
     try {
+        if (!authorization || authorization_key !== authorization.split(" ")[1]) {
+            return NextResponse.json({ message: "Unauthorized" }, { status: 401 })
+        }
+
         const response = await gogo.fetchRecentEpisodes()
         return NextResponse.json(response.results)
     } catch (error) {
