@@ -35,8 +35,8 @@ export default async function InfoBanner({ data }: Props) {
         <section className='relative h-[700px] xl:min-h-[75vh] -mt-20 overflow-hidden w-full grid place-items-center px-5 xl:px-0'>
             <div className="absolute top-0 left-0 w-full h-full z-[1]" />
             {banner?.backdrops?.length > 0 && (
-                <Image 
-                    priority
+                <img 
+                    
                     src={`${bannerBasePath}/${banner?.backdrops[0]?.file_path}`}
                     alt={title}
                     title={title}
@@ -48,7 +48,7 @@ export default async function InfoBanner({ data }: Props) {
             <div className='container bg-black/20 rounded-sm !p-0 md:!p-5 h-3/4 relative z-[2] mt-16 xl:mt-10 flex gap-x-7 overflow-hidden'>
                 <div className="basis-1/3 shrink-0 absolute top-0 left-0 w-full md:relative h-full">
                     <div className="absolute top-0 left-0 w-full z-[2] " />
-                    <Image
+                    <img
                         src={data?.image}
                         alt={title}
                         title={title}
@@ -57,7 +57,7 @@ export default async function InfoBanner({ data }: Props) {
                         className="w-full h-full object-cover relative z-[-1]"
                     />
                     {banner?.logos?.length > 0 && (
-                        <Image
+                        <img
                             src={`${logoBasePath}/${random(banner?.logos)?.file_path}`}
                             alt={title}
                             title={title}

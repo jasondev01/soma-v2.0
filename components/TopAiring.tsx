@@ -29,7 +29,7 @@ export default async function TopAiring({ data }: Props) {
                                     href={`/info/${anime?.id}`}
                                     className="block relative h-[250px] md:first:h-[528px] md:first:col-span-2 md:first:row-span-2 text-2xl font-bold group overflow-hidden border border-transparent hover:border-cyan-300 hover:shadow-[0px_0px_5px_1px] hover:shadow-cyan-300 transition-all duration-300 first"
                                 >
-                                    <Image 
+                                    <img 
                                         src={anime?.image}
                                         alt={anime?.title}
                                         width={500}

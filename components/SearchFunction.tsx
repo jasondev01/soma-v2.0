@@ -12,8 +12,8 @@ export default function SearchFunction() {
     const [ searchResults, setSearchResult ] = useState<SearchResultInterface[]>([])
     const [ typingTimeout, setTypingTimeout ] = useState<NodeJS.Timeout | null>(null)
 
-    const handleSearchQuery = async (q: string) => {
-        const results = await searchAnime(q)
+    const handleSearchQuery = async (query: string) => {
+        const results = await searchAnime(query)
 
         if(results.length === 0) {
             setIsEmpty(true)
@@ -92,7 +92,7 @@ export default function SearchFunction() {
                                 className='flex w-full gap-2 p-2 items-center transition-all hover:bg-black/80'
                             >
                                 <div className='relative w-[70px] h-14 overflow-hidden shrink-0'>
-                                    <Image
+                                    <img
                                         src={result?.image}
                                         alt='alt'
                                         title='title'
@@ -124,7 +124,7 @@ export default function SearchFunction() {
                             </div>
                         ) : (
                             <div className="w-full h-10 grid place-items-center mx-auto overflow-hidden">
-                                <Image 
+                                <img 
                                     src="/loading.gif"
                                     alt="Loading..."
                                     width={100}

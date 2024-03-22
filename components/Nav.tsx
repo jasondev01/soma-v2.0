@@ -106,24 +106,24 @@ export default function Nav() {
                     <div className='block md:hidden w-[70%] mx-auto text-center'>
                         <Link href="https://www.buymeacoffee.com/somae" target='_blank' className='text-base/[22px] uppercase font-semibold tracking-wide h-fit p-2 block relative'>
                             Donate
-                            <Image 
+                            <img 
                                 src="/heart.svg"
                                 alt='heart donation'
                                 width={20}
                                 height={20}
                                 className='animate-ping absolute top-[25%] left-[45%] translate-x-[45%]'
-                                unoptimized
+                                
                             />
                         </Link>
                         <span className='text-xs tracking-wide font-semibold mt-2 flex gap-1 w-full justify-center'>
                             Built with  
-                            <Image 
+                            <img 
                                 src="/heart.svg"
                                 alt='built with love'
                                 width={10}
                                 height={10}
                                 className='object-contain !fill-black text-black'
-                                unoptimized
+                                
                             />
                         </span>
                     </div> 
@@ -131,13 +131,13 @@ export default function Nav() {
                         <SearchFunction />
                         <Link href="https://www.buymeacoffee.com/somae" target='_blank' className='text-xs/[22px] uppercase font-semibold transition-all hover:bg-cyan-300 tracking-wide h-fit p-2 block relative'>
                             Donate
-                            <Image 
+                            <img 
                                 src="/heart.svg"
                                 alt='heart donation'
                                 width={20}
                                 height={20}
                                 className='animate-ping absolute top-[25%] right-[35%]'
-                                unoptimized
+                                
                             />
                         </Link>
                     </div>      

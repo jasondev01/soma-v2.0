@@ -6,13 +6,13 @@ export default function Loading() {
         <>
             <LoadingBar />
             <div className='h-[calc(100vh-305px)] grid place-items-center'>
-                <Image 
+                <img 
                     src="/loading-bar.svg"
                     height={50}
                     width={50}
                     alt='loading bar'
                     className='object-contain'
-                    unoptimized={true}
+                    
                 />
             </div>
         </>

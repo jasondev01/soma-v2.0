@@ -24,7 +24,7 @@ export default async function NewsPage() {
                                 className="block relative h-[250px] font-bold group overflow-hidden border border-transparent  hover:shadow-[0px_0px_5px_1px] hover:border-cyan-300 hover:shadow-cyan-300 transition-all duration-300"
                                 title={news?.title}
                             >
-                                <Image 
+                                <img 
                                     src={news?.thumbnail}
                                     alt={news?.title}
                                     width={500}

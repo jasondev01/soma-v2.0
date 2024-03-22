@@ -40,7 +40,7 @@ export default function Watched() {
                                 title={anime?.title}    
                             >
                                 <div className="absolute top-0 left-0 w-full h-full z-[1]" />
-                                <Image 
+                                <img 
                                     src={anime?.image}
                                     alt={anime?.title}
                                     width={250}

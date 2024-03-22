@@ -18,8 +18,8 @@ export default async function Banner({ data }: Props) {
         <section className="relative h-[500px] xl:h-[75vh] -mt-20 overflow-hidden w-full">
             <div className="absolute top-0 left-0 w-full h-full z-[1]" />
             {banner?.backdrops?.length > 0 && (
-                <Image 
-                    priority
+                <img 
+                    
                     src={`${bannerBasePath}/${random(banner?.backdrops)?.file_path}`}
                     alt={`${top?.original_name}`}
                     width={1200}
@@ -57,7 +57,7 @@ export default async function Banner({ data }: Props) {
                 <div className="hidden md:flex justify-end w-fit relative">
                     <div className="w-full h-full absolute top-0 left-0 z-[1]" />
                     {banner?.logos?.length > 0 && (
-                        <Image
+                        <img
                             src={`${logoBasePath}/${random(banner?.logos)?.file_path}`}
                             alt={`${top.original_name}`}
                             width={350}

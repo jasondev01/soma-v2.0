@@ -72,7 +72,7 @@ export const getSources = async (id: string) => {
         const response = await fetch(`${baseUrl}/api/watch/${id}`, {
             headers: headers,
             next: {
-                revalidate: 120 // two minutes
+                revalidate: 0 // two minutes
             }
         })
         return await response.json()

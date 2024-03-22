@@ -17,11 +17,11 @@ export default function Episodes({ data }: Props) {
 
     useLayoutEffect(() => {
         const watchedAnime: WatchedInterface[] = getWatched()
-        const anime = watchedAnime.filter(anime => anime?.id === data?.id)[0]
+        if (!watchedAnime || watchedAnime.length === 0) return
+        const anime = watchedAnime.find(anime => anime?.id === data?.id)
+        if(!anime) return
         setWatched(anime)
     }, [])
-
-    console.log({data})
 
     const rangeSize = 200
     const totalEpisodes = data?.episodes?.length
@@ -43,7 +43,7 @@ export default function Episodes({ data }: Props) {
     }
 
     const isEpisodeWatched = (episodeId: string) => {
-        return watched?.ep.some((ep) => ep.id === episodeId)
+        return watched && watched?.ep?.length !== 0 ? watched?.ep?.some((ep) => ep.id === episodeId) : false
     }
 
     return (

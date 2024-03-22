@@ -15,6 +15,7 @@ import { config } from "@/config"
 import Disqus from "../_components/Disqus"
 import { notFound } from "next/navigation"
 import SetWatchedHistory from "../_components/SetWatchedHistory"
+import TimeOut from "../_components/TimeOut"
 
 type Props = {
     params: {
@@ -22,7 +23,7 @@ type Props = {
     }
 }
 
-const { baseUrl } = config
+const { baseUrl, disqus_shortname } = config
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
     const { id } = params
@@ -81,7 +82,11 @@ export default async function WatchPage({ params }: Props) {
     let info = await getInfo(id.replace(/-episode-\d+(-\d+)?$/, ""))
     const source = await getSources(id)
 
-    if (!source || source?.error) return notFound()
+    if (!source || source?.error) {
+        if (source?.error && source?.message === "Request timeout")  return <TimeOut />
+        
+        return notFound()
+    }
 
     if (info.error) {
         const searchForAnime = await searchAnime(id.replace(/-episode-\d+(-\d+)?$/, ""))
@@ -99,8 +104,8 @@ export default async function WatchPage({ params }: Props) {
             <section className="relative -mt-20 h-[650px] md:h-[750px] xl:min-h-screen w-full grid place-items-center">
                 <div className="absolute top-0 left-0 w-full h-full z-[1]" />
                 {banner?.backdrops?.length > 0 && (
-                    <Image
-                        priority
+                    <img
+                        
                         src={`${bannerBasePath}/${banner?.backdrops[0]?.file_path}`}
                         alt={info?.title}
                         title={info?.title}
@@ -110,29 +115,16 @@ export default async function WatchPage({ params }: Props) {
                     />
                 )}
                 {banner?.logos?.length > 0 && (
-                    <>
-                        <Image
-                            src={`${logoBasePath}/${banner?.logos[0]?.file_path}`}
-                            alt={`${info?.title} Logo`}
-                            width={250}
-                            height={250}
-                            className="object-contain object-center drop-shadow-md mb-5 absolute left-16 z-[1]"
-                            style={{
-                                filter: "drop-shadow(0px 4px 4px rgba(103, 232, 249, 1)",
-                            }}
-                        />
-
-                        <Image
-                            src={`${logoBasePath}/${banner?.logos[0]?.file_path}`}
-                            alt={`${info?.title} Logo`}
-                            width={250}
-                            height={250}
-                            className="object-contain object-center drop-shadow-md absolute top-14 md:top-4 right-1/2 translate-x-1/2 z-[1]"
-                            style={{
-                                filter: "drop-shadow(0px 4px 4px rgba(103, 232, 249, 1)",
-                            }}
-                        />
-                    </>
+                    <img
+                        src={`${logoBasePath}/${banner?.logos[0]?.file_path}`}
+                        alt={`${info?.title} Logo`}
+                        width={250}
+                        height={250}
+                        className="object-contain object-center drop-shadow-md mb-5 absolute left-16 z-[1]"
+                        style={{
+                            filter: "drop-shadow(0px 4px 4px rgba(103, 232, 249, 1)",
+                        }}
+                    />
                 )}
                 <div className="container !px-2 sm:!px-5 mt-20 md:mt-14 relative z-[2]">
                     {source && (
@@ -161,6 +153,7 @@ export default async function WatchPage({ params }: Props) {
                         episodeId={id}
                         episodes={episodes}
                         currentEpisode={currentEpisode} 
+                        disqus_shortname={disqus_shortname}
                     />
                 </div>  
             </section>

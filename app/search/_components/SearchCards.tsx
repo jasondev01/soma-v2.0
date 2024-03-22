@@ -18,7 +18,7 @@ export default function SearchCards({ data }: Props) {
                             href={`/info/${anime?.id}`}
                             className={`block relative h-[250px] font-bold group overflow-hidden border border-transparent  hover:shadow-[0px_0px_5px_1px]  transition-all duration-300 ${anime?.subOrDub === 'sub' ? " hover:border-red-500 hover:shadow-red-500" : "hover:border-cyan-300 hover:shadow-cyan-300"}`}
                         >
-                            <Image 
+                            <img 
                                 src={anime?.image}
                                 alt={anime?.title}
                                 width={500}
@@ -42,7 +42,7 @@ export default function SearchCards({ data }: Props) {
                 <div className="w-full h-[calc(100vh-401px)] grid place-items-center overflow-hidden"> 
                     <div className="w-full h-full relative grid place-items-center">
                         <div className="absolute top-0 left-0 w-full h-full z-[1]" />
-                        <Image 
+                        <img 
                             src="/404.webp"
                             alt="anime not found"
                             width={400}

@@ -29,7 +29,7 @@ export default async function Popular({ data }: Props) {
                                     href={`/info/${anime?.id}`}
                                     className="block relative h-[250px] font-bold group overflow-hidden border border-transparent hover:border-cyan-300 hover:shadow-[0px_0px_5px_1px] hover:shadow-cyan-300 transition-all duration-300 fourth third"
                                 >
-                                    <Image 
+                                    <img 
                                         src={anime?.image}
                                         alt={anime?.title}
                                         width={500}
