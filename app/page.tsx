@@ -47,6 +47,7 @@ export default async function Home() {
         getPopular()
     ])
 
+    // console.log(topAiring.length)
     return (
         <main>
             <Banner data={topAiring}/>

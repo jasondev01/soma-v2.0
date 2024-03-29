@@ -1,5 +1,4 @@
 import LoadingBar from '@/components/LoadingBar'
-import Image from 'next/image'
 
 export default function Loading() {
     return (
@@ -11,8 +10,7 @@ export default function Loading() {
                     height={50}
                     width={50}
                     alt='loading bar'
-                    className='object-contain'
-                    
+                    className='object-contain select-none'
                 />
             </div>
         </>

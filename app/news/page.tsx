@@ -1,6 +1,5 @@
 import { NewsAnnInterface } from "@/types"
 import { getNews } from "@/utils/get-anime"
-import Image from "next/image"
 import Link from "next/link"
 
 export default async function NewsPage() {
@@ -24,7 +23,9 @@ export default async function NewsPage() {
                                 className="block relative h-[250px] font-bold group overflow-hidden border border-transparent  hover:shadow-[0px_0px_5px_1px] hover:border-cyan-300 hover:shadow-cyan-300 transition-all duration-300"
                                 title={news?.title}
                             >
+                                <div className="w-full h-full absolute left-0 top-0 z-[1]" />
                                 <img 
+                                    loading="lazy"
                                     src={news?.thumbnail}
                                     alt={news?.title}
                                     width={500}
@@ -46,7 +47,6 @@ export default async function NewsPage() {
                                 </span>
                             </div>
                         </div>
-                        
                     ))}
                 </div>
             </div>

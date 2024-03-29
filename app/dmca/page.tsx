@@ -69,7 +69,7 @@ export default function DMCA() {
                         </li>
                     </ul>
                     <p className="">
-                        Please send your DMCA takedown notice to <a href="mailto: somajsn@gmail.com" target="_blank" className="text-cyan-400 font-bold tracking-wide relative after:content-[''] after:absolute after:-bottom-[2px] after:left-0 after:w-0 after:h-[1.5px] after:bg-cyan-400 hover:after:transition-all hover:after:w-full  ">somajsn@gmail.com</a>. We will promptly investigate and take appropriate action in accordance with the DMCA.
+                        Please send your DMCA takedown notice to <a href="mailto:somajsn@gmail.com" target="_blank" className="text-cyan-400 font-bold tracking-wide relative after:content-[''] after:absolute after:-bottom-[2px] after:left-0 after:w-0 after:h-[1.5px] after:bg-cyan-400 hover:after:transition-all hover:after:w-full  ">somajsn@gmail.com</a>. We will promptly investigate and take appropriate action in accordance with the DMCA.
                     </p>
                 </div>
             </section>

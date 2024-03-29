@@ -4,22 +4,12 @@ const nextConfig = {
         remotePatterns: [
             {
                 protocol: 'https',
-                hostname: 'image.tmdb.org',
+                hostname: 's4.anilist.co',
                 pathname: '**',
             },
             {
                 protocol: 'https',
-                hostname: 'gogocdn.net',
-                pathname: '**',
-            },
-            {
-                protocol: 'https',
-                hostname: 'cdn.noitatnemucod.net',
-                pathname: '**',
-            },
-            {
-                protocol: 'https',
-                hostname: 'www.animenewsnetwork.com',
+                hostname: 'media.kitsu.io',
                 pathname: '**',
             },
         ],

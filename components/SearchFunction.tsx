@@ -1,6 +1,5 @@
-import { SearchResultInterface } from "@/types"
+import { AnilistSearchResultInterface } from "@/types"
 import { searchAnime } from "@/utils/get-anime"
-import Image from "next/image"
 import Link from "next/link"
 import { useRouter } from "next/navigation"
 import { useState, FormEvent, useEffect } from "react"
@@ -9,11 +8,11 @@ import { useState, FormEvent, useEffect } from "react"
 export default function SearchFunction() {
     const [ query, setQuery ] = useState('')
     const [ isEmpty, setIsEmpty ] = useState(false)
-    const [ searchResults, setSearchResult ] = useState<SearchResultInterface[]>([])
+    const [ searchResults, setSearchResult ] = useState<AnilistSearchResultInterface[]>([])
     const [ typingTimeout, setTypingTimeout ] = useState<NodeJS.Timeout | null>(null)
 
-    const handleSearchQuery = async (query: string) => {
-        const results = await searchAnime(query)
+    const handleSearchQuery = async (q: string) => {
+        const results = await searchAnime(q)
 
         if(results.length === 0) {
             setIsEmpty(true)
@@ -57,8 +56,8 @@ export default function SearchFunction() {
         e.preventDefault()
         
         setQuery('')
-        if (!query) return router.push('/search?q=anime')
-        router.push(`/search?q=${query}`)
+        if (!query) return router.push('/anime/search?q=anime')
+        router.push(`/anime/search?q=${query}`)
     }
 
     return (
@@ -92,10 +91,11 @@ export default function SearchFunction() {
                                 className='flex w-full gap-2 p-2 items-center transition-all hover:bg-black/80'
                             >
                                 <div className='relative w-[70px] h-14 overflow-hidden shrink-0'>
+                                    <div className="absolute top-0 left-0 w-full h-full z-[1]" />
                                     <img
                                         src={result?.image}
-                                        alt='alt'
-                                        title='title'
+                                        alt={result?.title?.english || result?.title?.romaji}
+                                        title={result?.title?.english || result?.title?.romaji}
                                         width={70}
                                         height={40}
                                         className='object-cover'
@@ -103,18 +103,16 @@ export default function SearchFunction() {
                                 </div>
                                 <div className=' px-2'>
                                     <span className='block text-sm font-semibold'>
-                                        {result?.title}
+                                        {result?.title?.english || result?.title?.romaji}
                                     </span>
-                                    <ul className="flex gap-2">
-                                        <li className="flex gap-1 capitalize">
-                                            <span className="font-semibold">
-                                                Type:
-                                            </span>
-                                            <span>
-                                                {result?.subOrDub}
-                                            </span>
-                                        </li>
-                                    </ul>
+                                    <div className="flex gap-2 ">
+                                        <p className="font-semibold">
+                                            Rating: 
+                                        </p>
+                                        <p className="flex gap-1 mt-[1px] text-xs">
+                                            {result?.rating}%
+                                        </p>
+                                    </div>
                                 </div>
                             </Link>
                         ))

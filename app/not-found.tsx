@@ -14,7 +14,7 @@ export default function NotFound() {
                     className="w-full h-full object-cover object-right md:object-center"
                 />
             </div>
-            <div className="h-[calc(100vh-305px)] flex justify-center items-center flex-col">
+            <div className="h-[calc(100vh-307px)] flex justify-center items-center flex-col">
                 <span className="text-4xl font-bold tracking-wide text-shadow text-black uppercase">
                     404 Page not found
                 </span>

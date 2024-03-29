@@ -1,4 +1,4 @@
-import type { Metadata } from "next"
+import type { Metadata, Viewport } from "next"
 import { Inter } from "next/font/google"
 import "./globals.css"
 import Nav from "@/components/Nav"
@@ -6,6 +6,10 @@ import Footer from "@/components/Footer"
 import ScrollUp from "@/components/ScrollUp"
 
 const inter = Inter({ subsets: ["latin"] })
+
+export const viewport: Viewport = {
+    themeColor: '#317EFB',
+}
 
 export const metadata: Metadata = {
     title: {
@@ -16,11 +20,15 @@ export const metadata: Metadata = {
         index: true,
         follow: true,
     },
+    verification: {
+        google: [ "", ]
+    },
     openGraph: {
         locale: 'en_US',
         type: 'website',
     },
 }
+
 
 type Props = {
     children: React.ReactNode
