@@ -32,7 +32,7 @@ Soma is built on Next.js 14, so caching is done on the fly and will revalidate t
 
 [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fjasondev01%2Fsoma-v2.0)
 
-If you are deploying to vercel. Make sure to set ENVIRONMENT VARIABLE `EXTERNAL_API` and set it your access key.
+If you are deploying to vercel. Make sure to set ENVIRONMENT VARIABLE `EXTERNAL_API`.
 
 ## Credits
 
