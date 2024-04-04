@@ -9,7 +9,7 @@ const headers = new Headers({
 
 export const getRecent = async () => {
     try {
-        const response = await fetch(`${baseUrl}/api/recent`, {
+        const response = await fetch(`${baseUrl}/api/anime/recent`, {
             headers: headers,
             next: {
                 revalidate: 120 // two minutes
@@ -24,7 +24,7 @@ export const getRecent = async () => {
 
 export const getTopAiring = async () => {
     try {
-        const response = await fetch(`${baseUrl}/api/top-airing`, {
+        const response = await fetch(`${baseUrl}/api/anime/top-airing`, {
             headers: headers,
             next: {
                 revalidate: 120 // two minutes
@@ -39,7 +39,7 @@ export const getTopAiring = async () => {
 
 export const getPopular = async () => {
     try {
-        const response = await fetch(`${baseUrl}/api/popular`, {
+        const response = await fetch(`${baseUrl}/api/anime/popular`, {
             headers: headers,
             next: {
                 revalidate: 120 // two minutes
@@ -52,9 +52,24 @@ export const getPopular = async () => {
     }
 }
 
+export const getSeasonal = async () => {
+    try {
+        const response = await fetch(`${baseUrl}/api/anime/seasonal`, {
+            headers: headers,
+            next: {
+                revalidate: 120 // two minutes
+            }
+        })
+
+        return await response.json()
+    } catch (error) {
+        console.log('getSeasonal', error)
+    }
+}
+
 export const getInfo = async (id: string) => {
     try {
-        const response = await fetch(`${baseUrl}/api/info/${id}`, {
+        const response = await fetch(`${baseUrl}/api/anime/info/${id}`, {
             headers: headers,
             next: {
                 revalidate: 120 // two minutes
@@ -69,10 +84,10 @@ export const getInfo = async (id: string) => {
 
 export const getSources = async (id: string) => {
     try {
-        const response = await fetch(`${baseUrl}/api/watch/${id}`, {
+        const response = await fetch(`${baseUrl}/api/anime/watch/${id}`, {
             headers: headers,
             next: {
-                revalidate: 0 // two minutes
+                revalidate: 0 // 0 minutes
             }
         })
         return await response.json()
@@ -81,9 +96,23 @@ export const getSources = async (id: string) => {
     }
 }
 
+export const getSkipTimes = async (id: string) => {
+    try {
+        const response = await fetch(`${baseUrl}/api/anime/skip/${id}`, {
+            headers: headers,
+            next: {
+                revalidate: 120 // two minutes
+            }
+        })
+        return await response.json()
+    } catch (error) {
+        console.log('getSkipTimes', error)
+    }
+}
+
 export const getTMDBResource = async (title: string) => {
     try {
-        const response = await fetch(`${baseUrl}/api/tmdb?query=${title}`, {
+        const response = await fetch(`${baseUrl}/api/anime/tmdb?query=${title}`, {
             headers: headers,
             next: {
                 revalidate: 120 // two minutes
@@ -97,7 +126,7 @@ export const getTMDBResource = async (title: string) => {
 
 export const getBanner = async (title: string) => {
     try {
-        const response = await fetch(`${baseUrl}/api/cover?id=${title}`, {
+        const response = await fetch(`${baseUrl}/api/anime/cover?id=${title}`, {
             headers: headers,
             next: {
                 revalidate: 120 // two minutes
@@ -111,7 +140,7 @@ export const getBanner = async (title: string) => {
 
 export const searchAnime = async (query: string) => {
     try {
-        const response = await fetch(`${baseUrl}/api/search/${query}`, {
+        const response = await fetch(`${baseUrl}/api/anime/search/${query}`, {
             headers: headers,
             next: {
                 revalidate: 120 // two minutes
@@ -125,7 +154,7 @@ export const searchAnime = async (query: string) => {
 
 export const getNews = async () => {
     try {
-        const response = await fetch(`${baseUrl}/api/news`, {
+        const response = await fetch(`${baseUrl}/api/anime/news`, {
             headers: headers,
             next: {
                 revalidate: 120 // two minutes

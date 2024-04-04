@@ -1,74 +1,71 @@
-import { PopularInterface, TopInterface } from "@/types"
-import { logoBasePath, bannerBasePath } from "@/utils/constants"
-import { getBanner, getTMDBResource } from "@/utils/get-anime"
-import { random } from "@/utils/helper"
-import moment from "moment"
-import Image from "next/image"
+import { Calendar, Cc, PlayButton } from "@/icons"
+import { AnilistTrendingInterface } from "@/types"
+import { cleanDescription, random } from "@/utils/helper"
 import Link from "next/link"
+import FeaturedBanner from "./FeaturedBanner"
+import { config } from "@/config"
 
 type Props = {
-    data: PopularInterface[]
+    data: AnilistTrendingInterface[]
 }
 
+const { video_api } = config
+
 export default async function Banner({ data }: Props) {
-    const top: TopInterface = await getTMDBResource(data[0]?.title)
-    const banner = await getBanner(String(top?.id))
+    const randomData = random(data)
+
+    const animeIndex = data?.findIndex(anime => anime?.id === randomData?.id)
 
     return (
-        <section className="relative h-[500px] xl:h-[75vh] -mt-20 overflow-hidden w-full">
-            <div className="absolute top-0 left-0 w-full h-full z-[1]" />
-            {banner?.backdrops?.length > 0 && (
-                <img 
-                    
-                    src={`${bannerBasePath}/${random(banner?.backdrops)?.file_path}`}
-                    alt={`${top?.original_name}`}
-                    width={1200}
-                    height={1200}
-                    className="object-cover h-full w-full opacity-40 absolute top-0 left-0"
-                />
-            )}
-            <div className="container mt-14 flex justify-between lg:gap-x-2 items-center h-full relative z-[2]">
-                <div className="flex-1 shrink-0">
-                    <h2 className="text-2xl font-semibold text-white text-shadow" >
-                        {data[0]?.title } {data[0]?.title ? " / " : ''} {top?.original_name}
-                    </h2>
-                    <span className="text-[11px] mt-1">
-                        {moment(top.first_air_date).format('LL')}
+        <section className="relative h-[500px] xl:h-[80vh] -mt-20">
+            <div className="absolute top-0 left-0 w-full h-full z-[1] hero" />
+            <FeaturedBanner 
+                data={randomData} 
+                video_api={video_api} 
+            />
+            <div className="container flex items-end h-full relative z-[2]">
+                <div className=" pb-8 md:pb-10 lg:pb-14">
+                    <span className="text-xl block mb-1 font-medium"
+                        style={{ 
+                            color: randomData?.color || ''
+                        }}
+                    >
+                        #{animeIndex+1} Trending
                     </span>
-                    <p className="text-sm mt-3 line-clamp-5 xl:w-3/4">
-                        {top?.overview}
+                    <h2 className="text-3xl md:text-5xl font-semibold text-white text-shadow md:w-[80%] lg:w-2/3">
+                        {randomData?.title?.english}
+                    </h2>
+                    <div className="flex gap-x-3 mt-2 ">
+                        <div className="text-xs font-semibold flex items-center gap-x-[1px]">
+                            <PlayButton className="w-5 h-5 mr-1" />
+                            {randomData?.type}
+                        </div>
+                        <div className="text-xs font-semibold flex items-center gap-x-[1px] uppercase">
+                            {randomData?.status}
+                        </div>
+                        <div className="text-xs font-semibold flex items-center gap-x-[1px]">
+                            <Calendar className="w-5 h-5 mr-1 text-gray-800 dark:text-white" />
+                            {randomData?.releaseDate}
+                        </div>
+                        <div className="text-xs font-semibold flex items-center gap-x-[1px]">
+                            <Cc className="w-5 h-5 mr-1" />
+                            {randomData?.totalEpisodes}
+                        </div>
+                    </div>
+                    <p className="text-sm mt-3 line-clamp-2 md:line-clamp-3 md:w-[75%] lg:w-1/2">
+                        {cleanDescription(randomData?.description)}
                     </p>
-
                     <div className="flex gap-2 mt-4">
-                        <Link 
-                            href={`/watch/${data[0]?.id}-episode-1`} 
-                            className="text-sm uppercase font-bold btn btn-primary"
-                        >
-                            First Episode
-                        </Link>
                         <Link
-                            href={`/info/${data[0]?.id}`}
-                            className="text-sm uppercase font-bold btn"
+                            href={`/anime/${randomData?.id}`}
+                            className="text-sm uppercase font-bold btn btn-primary !flex gap-x-1 rounded-full"
                         >
-                            Info<span className="sr-only">rmation</span>
+                            <PlayButton className="w-5 h-5 mr-1" />
+                            Play Now
                         </Link>
                     </div>
                 </div>
-                <div className="hidden md:flex justify-end w-fit relative">
-                    <div className="w-full h-full absolute top-0 left-0 z-[1]" />
-                    {banner?.logos?.length > 0 && (
-                        <img
-                            src={`${logoBasePath}/${random(banner?.logos)?.file_path}`}
-                            alt={`${top.original_name}`}
-                            width={350}
-                            height={350}
-                            className="object-contain object-center drop-shadow-md w-3/4 h-3/4 lg:w-full xl:h-full"
-                            style={{ filter: 'drop-shadow(0px 4px 4px rgba(103, 232, 249, 1)', }}
-                        />
-                    )}
-                </div>
             </div>
         </section>
-    )
+    );
 }
-    

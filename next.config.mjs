@@ -22,6 +22,16 @@ const nextConfig = {
                 hostname: 'www.animenewsnetwork.com',
                 pathname: '**',
             },
+            {
+                protocol: 'https',
+                hostname: 's4.anilist.co',
+                pathname: '**',
+            },
+            {
+                protocol: 'https',
+                hostname: 'media.kitsu.io',
+                pathname: '**',
+            },
         ],
     },
 };

@@ -1,11 +1,16 @@
-import type { Metadata } from "next"
+import type { Metadata, Viewport } from "next"
 import { Inter } from "next/font/google"
 import "./globals.css"
 import Nav from "@/components/Nav"
 import Footer from "@/components/Footer"
-import ScrollUp from "@/components/ScrollUp"
+import ScrollTopButton from "@/components/ScrollTopButton"
+import ScrollTopDefault from "@/components/ScrollTopDefault"
 
 const inter = Inter({ subsets: ["latin"] })
+
+export const viewport: Viewport = {
+    themeColor: '#317EFB',
+}
 
 export const metadata: Metadata = {
     title: {
@@ -16,11 +21,15 @@ export const metadata: Metadata = {
         index: true,
         follow: true,
     },
+    verification: {
+        google: [ "Rvz79dlMLtSH_LQe2d7wBI6vEG5gF7fVvry88YA7mK0", ]
+    },
     openGraph: {
         locale: 'en_US',
         type: 'website',
     },
 }
+
 
 type Props = {
     children: React.ReactNode
@@ -33,7 +42,8 @@ export default function RootLayout({ children, }: Readonly<Props>) {
                 <Nav />
                     {children}
                 <Footer />
-                <ScrollUp />
+                <ScrollTopButton />
+                <ScrollTopDefault />
             </body>
         </html>
     )
