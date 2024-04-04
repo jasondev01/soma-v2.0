@@ -3,7 +3,7 @@
 import { AnilistTrendingInterface } from "@/types"
 import Slider from "./Slider"
 import { SwiperSlide } from "swiper/react"
-import Card from "./Card"
+import Card from "./cards/Card"
 
 type Props = {
     data: AnilistTrendingInterface[] 

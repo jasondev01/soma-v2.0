@@ -17,13 +17,11 @@ type Props = {
 export default function Slider({ children, className, breakpoint }: Props) {
     return (
         <Swiper
-            // slidesPerView={slidesPerview || 8}
             breakpoints={breakpoint ? breakpoint : breakpoint1}
-            spaceBetween={20}
+            spaceBetween={10}
             pagination={{
                 clickable: true,
             }}
-            loop={true}
             navigation={true}
             modules={[Navigation]}
             className={`mt-5 ${className}`}

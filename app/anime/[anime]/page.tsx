@@ -1,10 +1,8 @@
-import { getInfo } from "@/utils/get-anime"
+import { getInfo, getSkipTimes } from "@/utils/get-anime"
 import Details from "./_components/Details"
-import { AnilistInfoInterface } from "@/types"
 import AnimePlayer from "./_components/AnimePlayer"
 import { config } from "@/config"
 import SetWatchedHistory from "./_components/SetWatchedHistory"
-import { notFound } from "next/navigation"
 
 type Props = {
     params: {
@@ -19,13 +17,14 @@ type Props = {
 const { disqus_shortname } = config
 
 export default async function AnimeInfoPage({ params: { anime: id }, searchParams: { watch } }: Props) {
-    const response = await getInfo(id)
-
-    if (!response || response.error) return notFound()
+    const [ response, skip ] = await Promise.all([
+        getInfo(id),
+        getSkipTimes(id)
+    ])
 
     return (
         <main>
-            <AnimePlayer data={response} watchParams={watch} />
+            <AnimePlayer data={response} watchParams={watch} skip={skip?.episodes} />
             <Details data={response} watchParams={watch} disqus_shortname={disqus_shortname as string}/>
             <SetWatchedHistory info={response} watchParams={watch} />
         </main>

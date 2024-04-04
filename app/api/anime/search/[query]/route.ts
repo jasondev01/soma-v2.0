@@ -32,8 +32,6 @@ export async function GET(req: NextRequest, { params }: Props) {
             allResults = allResults.concat(response?.results)
         }
 
-        console.log({allResults})
-
         return NextResponse.json(allResults)
     } catch (error) {
         return NextResponse.json({ message: `An error occurred in search/[query] route: ${error}` })

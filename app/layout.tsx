@@ -3,7 +3,8 @@ import { Inter } from "next/font/google"
 import "./globals.css"
 import Nav from "@/components/Nav"
 import Footer from "@/components/Footer"
-import ScrollUp from "@/components/ScrollUp"
+import ScrollTopButton from "@/components/ScrollTopButton"
+import ScrollTopDefault from "@/components/ScrollTopDefault"
 
 const inter = Inter({ subsets: ["latin"] })
 
@@ -21,7 +22,7 @@ export const metadata: Metadata = {
         follow: true,
     },
     verification: {
-        google: [ "", ]
+        google: [ "Rvz79dlMLtSH_LQe2d7wBI6vEG5gF7fVvry88YA7mK0", ]
     },
     openGraph: {
         locale: 'en_US',
@@ -41,7 +42,8 @@ export default function RootLayout({ children, }: Readonly<Props>) {
                 <Nav />
                     {children}
                 <Footer />
-                <ScrollUp />
+                <ScrollTopButton />
+                <ScrollTopDefault />
             </body>
         </html>
     )

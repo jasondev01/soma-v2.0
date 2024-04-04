@@ -52,6 +52,21 @@ export const getPopular = async () => {
     }
 }
 
+export const getSeasonal = async () => {
+    try {
+        const response = await fetch(`${baseUrl}/api/anime/seasonal`, {
+            headers: headers,
+            next: {
+                revalidate: 120 // two minutes
+            }
+        })
+
+        return await response.json()
+    } catch (error) {
+        console.log('getSeasonal', error)
+    }
+}
+
 export const getInfo = async (id: string) => {
     try {
         const response = await fetch(`${baseUrl}/api/anime/info/${id}`, {
@@ -72,12 +87,26 @@ export const getSources = async (id: string) => {
         const response = await fetch(`${baseUrl}/api/anime/watch/${id}`, {
             headers: headers,
             next: {
-                revalidate: 120 // two minutes
+                revalidate: 0 // 0 minutes
             }
         })
         return await response.json()
     } catch (error) {
         console.log('getSources', error)
+    }
+}
+
+export const getSkipTimes = async (id: string) => {
+    try {
+        const response = await fetch(`${baseUrl}/api/anime/skip/${id}`, {
+            headers: headers,
+            next: {
+                revalidate: 120 // two minutes
+            }
+        })
+        return await response.json()
+    } catch (error) {
+        console.log('getSkipTimes', error)
     }
 }
 

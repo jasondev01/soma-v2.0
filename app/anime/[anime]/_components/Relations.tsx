@@ -1,6 +1,6 @@
 "use client"
 
-import Card from "@/components/Card"
+import Card from "@/components/cards/Card"
 import Slider from "@/components/Slider"
 import { AnilistRelationInterface } from "@/types"
 import { SwiperSlide } from "swiper/react"

@@ -76,7 +76,7 @@ a {
 
 @layer utilities {
     .container {
-        @apply max-w-[1680px] w-full mx-auto px-3 sm:px-5;
+        @apply max-w-[1680px] w-full mx-auto px-2.5 sm:px-5;
     }
 
     .btn {

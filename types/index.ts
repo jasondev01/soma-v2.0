@@ -144,6 +144,7 @@ export interface AnilistRecommendationInterface {
     image: string
     cover: string
     score: number
+    type?: string
 }
 
 export interface AnilistRelationInterface {
@@ -179,6 +180,18 @@ export interface AnilistEpisodeInterface {
     imageHash: string
     airDate?: string
     createdAt?: string
+}
+
+export interface SkipTimeInterface {
+    intro: {
+        end: number,
+        start: number
+    },
+    outro: {
+        end: number,
+        start: number
+    },
+    number: number
 }
 
 export interface SourceAnilistInterface {
@@ -235,5 +248,30 @@ export interface WatchedInterface {
         id: string
         number?: number
         url?: string
+    }[]
+}
+
+export interface TopSeasonalInterface {
+    id: string
+    coverImage: string
+    season: string
+    title: {
+        native: string
+        romaji: string
+        english: string
+    },
+    rating: {
+        anilist: number
+    },
+    format: string
+    totalEpisodes: number
+    status: string
+    duration?: number 
+    color: string
+}
+
+export interface VideoTrailerInterface {
+    videoStreams: {
+        url: string
     }[]
 }

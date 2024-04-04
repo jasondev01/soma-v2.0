@@ -25,8 +25,6 @@ export default function Episodes({ watchParams, data, anime: currentAnime }: Pro
 
     useLayoutEffect(() => {
         const watchedAnime: WatchedInterface[] = getWatched()
-
-        console.log({watchedAnime})
         if (!watchedAnime || watchedAnime.length === 0) return
         const anime = watchedAnime.find(anime => anime?.id === currentAnime?.id)
         if(!anime) return
@@ -75,28 +73,30 @@ export default function Episodes({ watchParams, data, anime: currentAnime }: Pro
     }, [])
 
     const isEpisodeWatched = (episodeId: string) => {
-        console.log({episodeId})
         return watched && watched?.ep?.length !== 0 ? watched?.ep?.some((ep) => ep.id === episodeId) : false
     }
-
-    console.log({watched})
 
     const episodeMenus = [
         { menu: "folder", icon: <Folder className={`w-6 h-6 group-hover:stroke-red-500 transition-all ${selectedDisplay === 'folder' ? 'stroke-red-500' : ''}`}/> },
         { menu: "sortLine", icon: <SortLine className={`w-6 h-6 group-hover:stroke-red-500 transition-all ${selectedDisplay === 'sortLine' ? 'stroke-red-500' : ''}`} /> },
-        { menu: "sortArrows", icon: <SortTwoArrows className={`w-[22px] h-[22px] group-hover:stroke-red-500 transition-all ${selectedDisplay === 'sortArrows' ? 'stroke-red-500' : ''}`} /> },
     ]
+
+    const toggleSortOrder = () => {
+        const sortedEpisodes = [...displayedEpisodes].reverse()
+        data.reverse()
+        setDisplayedEpisodes(sortedEpisodes)
+    }
 
     return (
         <div className="container w-full h-full">
             <div className="flex justify-between items-center">
-                <h2 className="text-xl font-bold uppercase after block h-[25px] w-fit">
+                <h2 className="text-lg md:text-xl font-bold uppercase after block h-[25px] w-fit">
                     Episodes
                 </h2>
 
                 <div className="flex gap-x-4 items-center">
                     {totalEpisodes > 200 && (
-                        <div className="rounded-md px-2 py-1.5 bg-slate-800 text-xs font-semibold relative !select-none ">
+                        <div className="rounded-md px-2 py-1.5 bg-slate-800/60 text-[10px] md:text-xs font-semibold relative !select-none ">
                             <div className="flex gap-x-2 justify-between items-center w-[100px] shadow-sm cursor-pointer"
                                 onClick={() => setIsRangeClicked(prev => !prev)}
                             >
@@ -115,7 +115,7 @@ export default function Episodes({ watchParams, data, anime: currentAnime }: Pro
                                 {range?.map((r, idx) => (
                                     <button
                                         key={idx}
-                                        className={`text-left px-2 py-2 hover:bg-cyan-800 rounded-md ${activeRange === idx ? 'bg-cyan-800' : ''}`}
+                                        className={`text-left px-2 py-2 hover:bg-cyan-800 rounded-md ${activeRange === idx ? 'bg-cyan-400/30' : ''}`}
                                         onClick={() => handleRangeClick(r, idx)}
                                     >
                                         {`${r.start + 1} - ${r.end + 1}`}
@@ -125,7 +125,6 @@ export default function Episodes({ watchParams, data, anime: currentAnime }: Pro
                         </div>
                     )}
                     {episodeMenus.map(({menu, icon}) => (
-
                         <button key={menu}
                             className="cursor-pointer group"
                             onClick={() => setSelectedDisplay(menu)}
@@ -133,13 +132,18 @@ export default function Episodes({ watchParams, data, anime: currentAnime }: Pro
                             {icon}
                         </button>
                     ))}
+                    <button onClick={() => toggleSortOrder()}>
+                        <SortTwoArrows className={`w-[22px] h-[22px] group-hover:stroke-red-500 transition-all ${selectedDisplay === 'sortArrows' ? 'stroke-red-500' : ''}`} 
+                            
+                        />
+                    </button>
                 </div>
             </div>
-            <div className={`my-4 pr-3 ep_section text-sm font-medium ${selectedDisplay === 'folder' ? 'grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 h-[500px] overflow-y-auto' : 'episodes text-center'}`}>
+            <div className={`my-4 pr-3 ep_section text-sm font-medium ${selectedDisplay === 'folder' ? 'grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 !h-[500px] overflow-y-auto' : 'episodes text-center !h-fit'} ${totalEpisodes > 55 ? 'h-[500px]' : 'h-fit' }`}>
                 {totalEpisodes > 200 ? (
                     displayedEpisodes?.map(ep => {
                         return selectedDisplay === 'folder' ? (
-                            <Link key={ep?.number} href={`/anime/${animmeId}?watch=${ep?.id}`} className={`h-[130px] flex gap-x-3 p-3 rounded-md  hover:scale-[97%] transtion-all duration-200 ease-in-out ${currentEpisode?.id === ep?.id ? 'bg-cyan-800 scale-[97%]' : 'bg-slate-800 '} ${isEpisodeWatched(ep?.id) ? '!bg-cyan-800 scale-[97%]' : ''}`}>
+                            <Link key={ep?.number} href={`/anime/${animmeId}?watch=${ep?.id}`} className={`h-[130px] flex gap-x-3 p-3 rounded-md transtion-all hover:bg-cyan-400/30 duration-200 ease-in-out ${currentEpisode?.id === ep?.id ? 'bg-cyan-400/30' : 'bg-slate-800/60 '} ${isEpisodeWatched(ep?.id) ? '!bg-cyan-400/30' : ''}`}>
                                 <div className="basis-1/4 shrink-0 overflow-hidden rounded-md relative">
                                     <div className="absolute top-0 left-0 w-full h-full z-[1]" />
                                     <img 
@@ -159,16 +163,16 @@ export default function Episodes({ watchParams, data, anime: currentAnime }: Pro
                                     </p>
                                 </div>
                             </Link>
-                        ) : selectedDisplay === 'sortLine' ? (
-                            <Link key={ep?.number} href={`/anime/${animmeId}?watch=${ep?.id}`} className={`py-2 w-full rounded-md hover:bg-cyan-800 transition-all text-white/80 hover:text-white/100 ${currentEpisode?.id === ep?.id ? 'bg-cyan-800' : 'bg-slate-800 '}`}>
+                        ) : (
+                            <Link key={ep?.number} href={`/anime/${animmeId}?watch=${ep?.id}`} className={`py-2 w-full rounded-md hover:bg-cyan-800 transition-all text-white/80 hover:text-white/100 ${currentEpisode?.id === ep?.id ? 'bg-cyan-400/30' : 'bg-slate-800/60 '}`}>
                                 {ep?.number}
                             </Link>
-                        ) : null
+                        )
                     })
                 ): data?.length > 0 ? (
                     data?.map(ep => {
                         return selectedDisplay === 'folder' ? (
-                            <Link key={ep?.number} href={`/anime/${animmeId}?watch=${ep?.id}`} className={`h-[130px] flex gap-x-3 p-3 rounded-md  hover:scale-[97%] transtion-all duration-200 ease-in-out ${currentEpisode?.id === ep?.id ? 'bg-cyan-800 scale-[97%]' : 'bg-slate-800 '} ${isEpisodeWatched(ep?.id) ? '!bg-cyan-800 scale-[97%]' : ''}`}>
+                            <Link key={ep?.number} href={`/anime/${animmeId}?watch=${ep?.id}`} className={`h-[130px] flex gap-x-3 p-3 rounded-md transtion-all hover:bg-cyan-400/30 duration-200 ease-in-out ${currentEpisode?.id === ep?.id ? 'bg-cyan-400/30' : 'bg-slate-800/60 '} ${isEpisodeWatched(ep?.id) ? '!bg-cyan-400/30' : ''}`}>
                                 <div className="basis-1/4 shrink-0 overflow-hidden rounded-md relative">
                                     <div className="absolute top-0 left-0 w-full h-full z-[1]" />
                                     <img 
@@ -188,11 +192,11 @@ export default function Episodes({ watchParams, data, anime: currentAnime }: Pro
                                     </p>
                                 </div>
                             </Link>
-                        ) : selectedDisplay === 'sortLine' ?  (
-                            <Link key={ep?.number} href={`/anime/${animmeId}?watch=${ep?.id}`} className={`py-2 w-full  rounded-md hover:bg-cyan-800 transition-all text-white/80 hover:text-white/100 ${currentEpisode?.id === ep?.id ? 'bg-cyan-800' : 'bg-slate-800 '} ${isEpisodeWatched(ep?.id) ? '!bg-cyan-800' : ''}`}>
+                        ) : (
+                            <Link key={ep?.number} href={`/anime/${animmeId}?watch=${ep?.id}`} className={`py-2 w-full  rounded-md hover:bg-cyan-400/30 transition-all text-white/80 hover:text-white/100 ${currentEpisode?.id === ep?.id ? 'bg-cyan-400/30' : 'bg-slate-800/60 '} ${isEpisodeWatched(ep?.id) ? '!bg-cyan-400/30' : ''}`}>
                                 {ep?.number}    
                             </Link>
-                        ) : null
+                        ) 
                     })
                 ) : (
                     <p>NO EPISODE</p>

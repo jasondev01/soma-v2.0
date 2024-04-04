@@ -4,7 +4,6 @@ import Link from 'next/link'
 import { FormEvent, useEffect, useState } from 'react'
 import SearchFunction from './SearchFunction'
 import { usePathname, useRouter } from 'next/navigation'
-import Image from 'next/image'
 
 const menus = [
     { menu: 'Home', href: '/' },
@@ -75,7 +74,7 @@ export default function Nav() {
     return (
         <header className={`sticky top-0 h-14 xl:h-20 ${isScrolled ? 'bg-black' : 'bg-gradient-to-b from-black/50 to-black/10'} z-[999999]`}>
             <nav className='container h-full flex items-center justify-between md:justify-normal'>
-                <div className='text-2xl md:text-4xl font-extrabold relative z-30'>
+                <div className='text-3xl md:text-4xl font-extrabold relative z-30'>
                     <Link href="/">
                         <h1 style={{ textShadow: "0px 2px 4px rgba(103, 232, 249, 0.5)" }}>
                             soma-tv. <span className='sr-only'>| watch and stream anime, ad free</span>
@@ -126,7 +125,7 @@ export default function Nav() {
                             />
                         </span>
                     </div> 
-                    <div className='hidden md:flex gap-1 justify-self-end items-center'>
+                    <div className='hidden md:flex gap-1 justify-self-end items-center '>
                         <SearchFunction />
                         <Link href="https://www.buymeacoffee.com/somae" target='_blank' className='text-xs/[22px] uppercase font-semibold transition-all hover:bg-cyan-300 tracking-wide h-fit p-2 block relative'>
                             Donate

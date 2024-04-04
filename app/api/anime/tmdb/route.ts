@@ -12,9 +12,6 @@ export async function GET(req: NextRequest) {
             headers: {
                 'Authorization': `Bearer ${tmdb_access_key}`,
                 'Accept': 'application/json'
-            },
-            next: {
-                revalidate: 60
             }
         })
 
@@ -24,3 +21,5 @@ export async function GET(req: NextRequest) {
         return NextResponse.json({ error, message: `This just happed in tmdb route: ${error}` })
     }
 }
+
+// not used

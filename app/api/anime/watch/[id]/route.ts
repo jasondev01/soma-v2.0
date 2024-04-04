@@ -19,6 +19,7 @@ export async function GET(req: NextRequest, { params }: Props) {
         }
 
         const response = await anilist.fetchEpisodeSources(id)
+
         return NextResponse.json(response, { status: 200 })
     } catch (error) {
         return NextResponse.json({ error, message: `This just happed in watch/[id] route ${error}` })

@@ -1,9 +1,8 @@
 'use client'
 
-import { CloseIcon, PlayButton } from "@/icons"
+import { CloseIcon, SimplePlayButton } from "@/icons"
 import { WatchedInterface } from "@/types"
 import useLocalStorage from "@/utils/localStorage"
-import Image from "next/image"
 import Link from "next/link"
 import { useLayoutEffect, useState } from "react"
 import Slider from "./Slider"
@@ -33,16 +32,15 @@ export default function Watched() {
         <section>
             {watched && watched.length > 0 && (
                 <div className="container mt-10">
-                    <h2 className="text-xl font-bold uppercase after">
+                    <h2 className="text-lg md:text-xl font-bold uppercase after">
                         Continue Watching
                     </h2>
-                    {/* <div className="mt-5 min-h-[250px] grid grid-cols-2 md:grid-cols-4 xl:grid-cols-5 gap-x-5 gap-y-7"> */}
                     <Slider breakpoint={breakpoint2} className="watched" >
                         {watched?.slice()?.reverse()?.map(anime => (
                             <SwiperSlide key={anime?.id}>
                                 <div 
                                     key={anime?.ep?.at(-1)?.id}
-                                    className="h-[250px] block relative group overflow-hidden border border-transparent hover:border-cyan-300 hover:shadow-[0px_0px_5px_1px] hover:shadow-cyan-300 transition-all duration-300"
+                                    className="h-[165px] lg:h-[250px] block relative group overflow-hidden border border-transparent hover:border-cyan-300 hover:shadow-[0px_0px_5px_1px] hover:shadow-cyan-300 transition-all duration-300"
                                     title={anime?.title}    
                                 >
                                     <div className="absolute top-0 left-0 w-full h-full z-[1]" />
@@ -57,7 +55,11 @@ export default function Watched() {
                                         href={`/anime/${anime?.id}?watch=${anime?.ep?.at(-1)?.id}`}
                                         className="w-full h-full absolute left-0 top-0 z-[5]"
                                         title={anime?.title} 
-                                    />
+                                    >
+                                        <span className="sr-only">
+                                            {anime?.title}
+                                        </span>
+                                    </Link>
                                     <button 
                                         className="absolute z-10 top-1 right-1 p-1 rounded-full bg-gray-600 text-[11px]/4 font-semibold uppercase shadow-md hover:bg-red-500 transition-all hover:rotate-180"
                                         title={`Remove ${anime?.title} from watched list`}
@@ -71,7 +73,7 @@ export default function Watched() {
                                         </h3>
                                         <span className="text-[11px] tracking-wide flex gap-1 items-center uppercase font-semibold group-hover:text-cyan-300 transition-all">
                                             Episode {anime?.ep?.at(-1)?.number}
-                                            <PlayButton className="group-hover:fill-cyan-300 transition-all" />
+                                            <SimplePlayButton className="group-hover:fill-cyan-300 transition-all" />
                                         </span>
                                     </div>
                                 </div>

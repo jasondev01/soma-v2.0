@@ -1,19 +1,35 @@
 'use client'
 
 import Artplayer from "artplayer"
-import { useLayoutEffect } from "react"
+import { useLayoutEffect, useRef, useState } from "react"
 import Hls from "hls.js"
-import { AnilistEpisodeInterface, AnilistInfoInterface, SourceAnilistInterface, SourcesInterface } from "@/types"
+import { AnilistEpisodeInterface, AnilistInfoInterface, SkipTimeInterface, SourceAnilistInterface, SourcesInterface } from "@/types"
+import { setTimeout } from "timers"
 
 type Props = {
     info: AnilistInfoInterface
     source: SourceAnilistInterface
     currentEpisode?: AnilistEpisodeInterface
+    skip: SkipTimeInterface[]
 }
 
-export default function Player({ info, source, currentEpisode }: Props) {
+export default function Player({ info, source, currentEpisode, skip }: Props) {
+    const artRef = useRef<Artplayer | null>(null)
+    
+    const [ isSkipTime, setIsSkipTime ] = useState(false)
+    const [ intro, setIntro ] = useState({
+        end: 0,
+        start: 0
+    })
     
     useLayoutEffect(() => {
+        const skipTime = skip?.find(s => s?.number === currentEpisode?.number)
+
+        setIntro({
+            end: skipTime?.intro?.end || 0,
+            start: skipTime && skipTime.intro.start < 10 ? 10 : skipTime?.intro?.start || 0
+        })
+
         const art = new Artplayer({
             container: '.artplayer-app',
             url: source?.sources?.find(source => source?.quality === '720p')?.url || '',
@@ -74,15 +90,82 @@ export default function Player({ info, source, currentEpisode }: Props) {
                 number: 60,
                 column: 10,
             },
+            highlight: [
+                {
+                    time: skipTime?.intro?.start || 0,
+                    text: 'Opening Start',
+                },
+                {
+                    time: skipTime?.intro?.end || 0,
+                    text: 'Opening End',
+                },
+            ],
             icons: {},
         })
+    
+        artRef.current = art
 
         return () => {
             art.destroy()
         }
     }, [info, source])
 
-    return (
-        <div className="artplayer-app h-full" />
-    )
+    useLayoutEffect(() => {
+        if (artRef?.current) {
+            const videoElement = artRef?.current.video
+            
+            if (videoElement) {
+                videoElement.addEventListener('timeupdate', handleTimeUpdate)
+            }
+        }
+    
+        return () => {
+            if (artRef?.current) {
+                const videoElement = artRef?.current.video
+                
+                if (videoElement) {
+                    videoElement.removeEventListener('timeupdate', handleTimeUpdate)
+                }
+            }
+        }
+        
+    }, [artRef.current, currentEpisode])
+
+    useLayoutEffect(() => {
+        const playerContainer = document.querySelector('.artplayer-app .art-video-player');
+        playerContainer?.classList.add('relative');
+
+        const buttonElement = document.createElement('button');
+        buttonElement.className = `skip-intro-button w-fit absolute top-[15%] px-2 md:px-5 py-2 capitalize font-medium tracking-wide text-sm md:text-base bg-cyan-300 text-white shadow-sm transition-all duration-1000 z-[9999] ${isSkipTime ? 'right-2 lg:right-10 ' : '-right-[100%]'}`;
+        buttonElement.textContent = 'Skip Intro';
+        buttonElement.addEventListener('click', handleSkipIntro);
+
+        playerContainer && playerContainer.appendChild(buttonElement);
+
+        return () => {
+            const existingButton = playerContainer?.querySelector('.skip-intro-button');
+            existingButton && playerContainer?.removeChild(existingButton);
+        }
+    }, [isSkipTime])
+    
+    
+    const handleTimeUpdate = () => {
+        if (artRef?.current) {
+            if(intro?.start === Math.ceil(artRef?.current?.currentTime)) {
+                setIsSkipTime(true)
+                setTimeout(() => {
+                    setIsSkipTime(false)
+                }, 7000)
+            }
+        }
+    }
+
+    const handleSkipIntro = () => {
+        if (artRef?.current && artRef?.current?.currentTime) {
+            artRef.current.currentTime = intro.end 
+            setIsSkipTime(false)
+        } 
+    }
+
+    return <div className="artplayer-app h-full " />
 }

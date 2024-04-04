@@ -1,5 +1,4 @@
 import { AnilistTrendingInterface } from "@/types"
-import Image from "next/image"
 import SliderSection from "./SliderSection"
 
 type Props = {
@@ -8,12 +7,10 @@ type Props = {
 
 export default function TopAiring({ data }: Props) {
 
-
-    
     return (
         <section id="top-airing">
             <div className="container mt-10">
-                <h2 className="text-xl font-bold uppercase after">
+                <h2 className="text-lg md:text-xl font-bold uppercase after">
                     Trending Anime
                 </h2>
                 <SliderSection data={data} />

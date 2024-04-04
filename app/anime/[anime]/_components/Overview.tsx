@@ -24,7 +24,7 @@ export default function Overview({ data }: Props) {
 
     return (
         <div className="container w-full h-full">
-            <div className="bg-slate-800/50 h-full w-full rounded-xl flex flex-col items-center md:flex-row gap-5 p-4 relative">
+            <div className="bg-slate-800/60 h-full w-full rounded-xl flex flex-col items-center md:flex-row gap-5 p-2 md:p-4 relative overflow-hidden">
                 <div className="w-full md:w-[300px] absolute top-0 left-0 h-full shrink-0 md:relative">
                     <img 
                         src={data?.image}

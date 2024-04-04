@@ -1,5 +1,4 @@
 import { AnilistSearchResultInterface } from "@/types"
-import Image from "next/image"
 import Link from "next/link"
 import React from "react"
 
@@ -12,12 +11,12 @@ export default function SearchCards({ data }: Props) {
     return (
         <div className="container min-h-[calc(100vh-401px)]">
             {data?.length > 0 ? (
-                <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-8 gap-x-5 gap-y-7">
+                <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-8 gap-x-5 gap-y-7">
                     {data?.map(anime => (
                         <div key={anime?.id}>
                             <Link 
                                 href={`/anime/${anime?.id}`}
-                                className="block relative h-[250px] font-bold group overflow-hidden border border-transparent  hover:shadow-[0px_0px_5px_1px] transition-all duration-300 hover:border-cyan-300 hover:shadow-cyan-300 rounded-md"
+                                className="block relative h-[165px] lg:h-[250px] font-bold group overflow-hidden border border-transparent  hover:shadow-[0px_0px_5px_1px] transition-all duration-300 hover:border-cyan-300 hover:shadow-cyan-300 rounded-md"
                             >
                                 <div className="absolute left-0 top-0 w-full h-full z-[1]" />
                                 <img 

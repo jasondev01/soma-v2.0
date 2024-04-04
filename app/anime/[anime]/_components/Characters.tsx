@@ -1,6 +1,6 @@
 'use client'
 
-import CharacterCard from "@/components/CharacterCard"
+import CharacterCard from "@/components/cards/CharacterCard"
 import Slider from "@/components/Slider"
 import { AnilistCharacterInterface } from "@/types"
 import { SwiperSlide } from "swiper/react"
@@ -13,7 +13,7 @@ export default function Characters({ data }: Props) {
     return (
         <div className="container w-full h-full">
             <div className="w-full">
-                <h2 className="text-xl font-bold uppercase">
+                <h2 className="text-lg md:text-xl font-bold uppercase">
                     Main
                 </h2>
                 <Slider className="!mt-2">
@@ -28,7 +28,7 @@ export default function Characters({ data }: Props) {
             </div>
 
             <div className="w-full mt-5">
-                <h2 className="text-xl font-bold uppercase">
+                <h2 className="text-lg md:text-xl font-bold uppercase">
                     Other Roles
                 </h2>
                 <Slider className="!mt-2">

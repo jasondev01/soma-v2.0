@@ -26,3 +26,5 @@ export async function GET(req: NextRequest) {
         return NextResponse.json({error, message: `This just happened in cover route ${error}` })
     }
 }   
+
+// not used

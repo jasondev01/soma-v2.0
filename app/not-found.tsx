@@ -1,5 +1,4 @@
 import BackButton from "@/components/BackButton";
-import Image from "next/image";
 
 export default function NotFound() {
 

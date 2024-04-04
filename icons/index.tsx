@@ -94,7 +94,7 @@ export const CloseIcon = ({ className }: Props) => {
     )
 }
 
-export const PlayButton = ({ className }: Props) => {
+export const SimplePlayButton = ({ className }: Props) => {
     return (
         <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -106,6 +106,152 @@ export const PlayButton = ({ className }: Props) => {
                 fill="currentColor"
                 d="M3 22v-20l18 10-18 10z"
                 className={className}
+            />
+        </svg>
+    )
+}
+
+export const ArrowLeft = ({ className }: Props) => {
+    return (
+        <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 512.000000 512.000000"
+            preserveAspectRatio="xMidYMid meet"
+            className={className}
+            stroke="#fff "
+            fill="none"
+        >
+            <g transform="translate(0.000000,512.000000) scale(0.100000,-0.100000)">
+                <path
+                    d="M1260 4056 c0 -3 162 -330 360 -726 198 -396 360 -731 360 -745 0
+                            -14 -162 -350 -361 -746 -198 -397 -359 -723 -357 -725 6 -6 2749 1461 2749
+                            1471 1 5 -558 308 -1242 673 -1543 822 -1509 805 -1509 798z"
+                />
+            </g>
+        </svg>
+    )
+}
+
+export const ArrowRight = ({ className }: Props) => {
+    return (
+        <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 512.000000 512.000000"
+            preserveAspectRatio="xMidYMid meet"
+            className={className}
+            stroke="#fff"
+            fill="none"
+        >
+            <g transform="translate(0.000000,512.000000) scale(0.100000,-0.100000)">
+                <path
+                    d="M1260 4056 c0 -3 162 -330 360 -726 198 -396 360 -731 360 -745 0
+                            -14 -162 -350 -361 -746 -198 -397 -359 -723 -357 -725 6 -6 2749 1461 2749
+                            1471 1 5 -558 308 -1242 673 -1543 822 -1509 805 -1509 798z"
+                />
+            </g>
+        </svg>
+    )
+}
+
+export const PlayButton = ({ className }: Props) => {
+    return (
+        <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className={className}
+            viewBox="0 0 48 48"
+        >
+            <defs>
+                <mask id="ipSPlay0">
+                    <g fill="none" strokeLinejoin="round" strokeWidth="4">
+                        <path
+                            fill="#fff"
+                            stroke="#fff"
+                            d="M24 44c11.046 0 20-8.954 20-20S35.046 4 24 4S4 12.954 4 24s8.954 20 20 20Z"
+                        />
+                        <path
+                            fill="#000"
+                            stroke="#000"
+                            d="M20 24v-6.928l6 3.464L32 24l-6 3.464l-6 3.464z"
+                        />
+                    </g>
+                </mask>
+            </defs>
+            <path fill="currentColor" d="M0 0h48v48H0z" mask="url(#ipSPlay0)" />
+        </svg>
+    )
+}
+
+export const StarOutline = ({ className }: Props) => {
+    return (
+        <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            strokeWidth="1.5"
+            stroke="currentColor"
+            className={className}
+        >
+            <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M11.48 3.499a.562.562 0 011.04 0l2.125 5.111a.563.563 0 00.475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 00-.182.557l1.285 5.385a.562.562 0 01-.84.61l-4.725-2.885a.563.563 0 00-.586 0L6.982 20.54a.562.562 0 01-.84-.61l1.285-5.386a.562.562 0 00-.182-.557l-4.204-3.602a.563.563 0 01.321-.988l5.518-.442a.563.563 0 00.475-.345L11.48 3.5z"
+            ></path>
+        </svg>
+    )
+}
+
+export const Calendar = ({ className }: Props) => {
+    return (
+        <svg
+            className={className}
+            aria-hidden="true"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+        >
+            <path
+                stroke="currentColor"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+                d="M4 10h16M8 14h8m-4-7V4M7 7V4m10 3V4M5 20h14c.6 0 1-.4 1-1V7c0-.6-.4-1-1-1H5a1 1 0 0 0-1 1v12c0 .6.4 1 1 1Z"
+            />
+        </svg>
+    )
+}
+
+export const XIcon = ({ className }: Props) => {
+    return (
+        <svg
+            xmlns="http://www.w3.org/2000/svg"
+            x="0px"
+            y="0px"
+            width="18"
+            height="18"
+            viewBox="0 0 30 30"
+            stroke="none"
+            className={className}
+        >
+            <path d="M 7 4 C 6.744125 4 6.4879687 4.0974687 6.2929688 4.2929688 L 4.2929688 6.2929688 C 3.9019687 6.6839688 3.9019687 7.3170313 4.2929688 7.7070312 L 11.585938 15 L 4.2929688 22.292969 C 3.9019687 22.683969 3.9019687 23.317031 4.2929688 23.707031 L 6.2929688 25.707031 C 6.6839688 26.098031 7.3170313 26.098031 7.7070312 25.707031 L 15 18.414062 L 22.292969 25.707031 C 22.682969 26.098031 23.317031 26.098031 23.707031 25.707031 L 25.707031 23.707031 C 26.098031 23.316031 26.098031 22.682969 25.707031 22.292969 L 18.414062 15 L 25.707031 7.7070312 C 26.098031 7.3170312 26.098031 6.6829688 25.707031 6.2929688 L 23.707031 4.2929688 C 23.316031 3.9019687 22.682969 3.9019687 22.292969 4.2929688 L 15 11.585938 L 7.7070312 4.2929688 C 7.5115312 4.0974687 7.255875 4 7 4 z"></path>
+        </svg>
+    )
+}
+
+export const Cc = ({ className }: Props) => {
+    return (
+        <svg
+            viewBox="0 0 32 32"
+            className={className}
+            fill="none"
+            aria-hidden="true"
+            focusable="false"
+            xmlns="http://www.w3.org/2000/svg"
+        >
+            <path
+                fillRule="evenodd"
+                clipRule="evenodd"
+                d="M4.6661 6.66699C4.29791 6.66699 3.99943 6.96547 3.99943 7.33366V24.667C3.99943 25.0352 4.29791 25.3337 4.6661 25.3337H27.3328C27.701 25.3337 27.9994 25.0352 27.9994 24.667V7.33366C27.9994 6.96547 27.701 6.66699 27.3328 6.66699H4.6661ZM8.66667 21.3333C8.29848 21.3333 8 21.0349 8 20.6667V11.3333C8 10.9651 8.29848 10.6667 8.66667 10.6667H14C14.3682 10.6667 14.6667 10.9651 14.6667 11.3333V12.6667C14.6667 13.0349 14.3682 13.3333 14 13.3333H10.8C10.7264 13.3333 10.6667 13.393 10.6667 13.4667V18.5333C10.6667 18.607 10.7264 18.6667 10.8 18.6667H14C14.3682 18.6667 14.6667 18.9651 14.6667 19.3333V20.6667C14.6667 21.0349 14.3682 21.3333 14 21.3333H8.66667ZM18 21.3333C17.6318 21.3333 17.3333 21.0349 17.3333 20.6667V11.3333C17.3333 10.9651 17.6318 10.6667 18 10.6667H23.3333C23.7015 10.6667 24 10.9651 24 11.3333V12.6667C24 13.0349 23.7015 13.3333 23.3333 13.3333H20.1333C20.0597 13.3333 20 13.393 20 13.4667V18.5333C20 18.607 20.0597 18.6667 20.1333 18.6667H23.3333C23.7015 18.6667 24 18.9651 24 19.3333V20.6667C24 21.0349 23.7015 21.3333 23.3333 21.3333H18Z"
+                fill="currentColor"
             />
         </svg>
     )

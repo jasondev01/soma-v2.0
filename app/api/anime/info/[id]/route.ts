@@ -9,8 +9,7 @@ type Props = {
     }
 }
 
-export async function GET(req: NextRequest, { params }: Props) {
-    const { id } = params
+export async function GET(req: NextRequest, { params: { id } }: Props) {
     const authorization = req.headers.get("Authorization")
     
     try {

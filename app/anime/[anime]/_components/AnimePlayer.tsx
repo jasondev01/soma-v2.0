@@ -1,15 +1,16 @@
 import React from 'react'
 import Player from './Player'
-import { AnilistInfoInterface } from '@/types'
+import { AnilistInfoInterface, SkipTimeInterface } from '@/types'
 import { getSources } from '@/utils/get-anime'
 import PrevNext from './PrevNext'
 
 type Props = {
     data: AnilistInfoInterface
     watchParams: string
+    skip: SkipTimeInterface[]
 }
 
-export default async function AnimePlayer({ data, watchParams }: Props) {
+export default async function AnimePlayer({ data, watchParams, skip }: Props) {
     const firstEpisode = data?.episodes?.find(ep => ep?.number === 1) 
     let source, currentEpisode
 
@@ -21,11 +22,11 @@ export default async function AnimePlayer({ data, watchParams }: Props) {
         currentEpisode = data?.episodes?.find(ep => ep?.number === 1) 
     }
 
-    return (
+    return !source.error && (
         <>
-            <section className="relative h-[350px] sm:h-[500px] xl:h-[75vh] overflow-hidden w-full">
-                <div className="container h-full">
-                    <Player info={data} source={source} currentEpisode={currentEpisode} />
+            <section className="relative h-[350px] sm:h-[500px] xl:h-[80vh] overflow-hidden w-full">
+                <div className="container h-full relative overflow-hidden">
+                    <Player info={data} source={source} currentEpisode={currentEpisode} skip={skip} />
                 </div>
             </section>
             <div className='container mt-4 w-full'>

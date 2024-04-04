@@ -6,16 +6,14 @@ const footerMenus = [
     { menu: 'GitHub', href: 'https://github.com/jasondev01/soma-v2.0' },
     { menu: '•', href: '' },
     { menu: 'Terms of Service', href: '/terms' },
-    // { menu: '•', href: '' },
-    // { menu: 'Donate', href: 'https://www.buymeacoffee.com/somae' },
 ]
 
 export default function Footer() {
     return (        
-        <footer className='mt-10 h-fit bg-black'>
+        <footer className='mt-10 h-fit bg-slate-800/60'>
             <div className='container pt-10 pb-5 flex flex-col items-center md:flex-row md:justify-between'>
                 <div className='flex-1 flex gap-x-4 flex-wrap justify-center md:justify-start lg:items-center'>
-                    <Link href='/' className="block w-fit text-4xl font-bold tracking-wide">
+                    <Link href='/' className="block w-fit text-3xl md:text-4xl font-bold tracking-wide">
                         soma-tv.
                     </Link>
                     <p className='text-[11px] text-center md:text-left mt-2 lg:w-1/2'>
@@ -28,7 +26,7 @@ export default function Footer() {
                     <li key={idx}>
                         <Link
                             href={menu.href}
-                            className={`text-xs font-semibold hover:text-cyan-300 transition-all ${menu.href ? '' : 'pointer-events-none md:hidden'}`}
+                            className={`text-xs font-medium hover:text-cyan-300 transition-all ${menu.href ? '' : 'pointer-events-none md:hidden'}`}
                         >
                             {menu.menu}
                         </Link>
