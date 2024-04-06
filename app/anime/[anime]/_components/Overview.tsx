@@ -26,6 +26,7 @@ export default function Overview({ data }: Props) {
         <div className="container w-full h-full">
             <div className="bg-slate-800/60 h-full w-full rounded-xl flex flex-col items-center md:flex-row gap-5 p-2 md:p-4 relative overflow-hidden">
                 <div className="w-full md:w-[300px] absolute top-0 left-0 h-full shrink-0 md:relative">
+                    <div className="absolute top-0 left-0 w-full h-full hidden md:block" />
                     <img 
                         src={data?.image}
                         alt={data?.title?.english}
@@ -43,7 +44,7 @@ export default function Overview({ data }: Props) {
                     </p>
                     <div className="mt-2">
                         {infos?.map(info => (
-                            <div key={info?.name} className="flex gap-x-3 gap-y-1 first:mt-2 mt-1 flex-wrap">
+                            <div key={info?.name} className="flex gap-x-2 gap-y-1 first:mt-2 mt-1 flex-wrap">
                                 <span className="opacity-80">
                                     {info?.name}
                                 </span>

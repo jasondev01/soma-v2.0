@@ -15,20 +15,30 @@ type Props = {
 
 export default function Player({ info, source, currentEpisode, skip }: Props) {
     const artRef = useRef<Artplayer | null>(null)
-    
-    const [ isSkipTime, setIsSkipTime ] = useState(false)
-    const [ intro, setIntro ] = useState({
+
+    const [isSkipTime, setIsSkipTime] = useState(false)
+    const [intro, setIntro] = useState({
         end: 0,
         start: 0
     })
-    
+    const [outro, setOutro] = useState({
+        start: 0
+    })
+
     useLayoutEffect(() => {
         const skipTime = skip?.find(s => s?.number === currentEpisode?.number)
 
-        setIntro({
-            end: skipTime?.intro?.end || 0,
-            start: skipTime && skipTime.intro.start < 10 ? 10 : skipTime?.intro?.start || 0
-        })
+        if (skipTime) {
+            setIntro({
+                end: skipTime?.intro?.end || 0,
+                start: skipTime && skipTime.intro.start < 10 ? 10 : skipTime?.intro?.start || 0
+            })
+
+            setOutro({
+                start: skipTime && skipTime.intro.end < 10 ? 10 : skipTime?.intro?.start || 0
+            })
+        }
+
 
         const art = new Artplayer({
             container: '.artplayer-app',
@@ -93,16 +103,24 @@ export default function Player({ info, source, currentEpisode, skip }: Props) {
             highlight: [
                 {
                     time: skipTime?.intro?.start || 0,
-                    text: 'Opening Start',
+                    text: 'Intro Start',
                 },
                 {
                     time: skipTime?.intro?.end || 0,
-                    text: 'Opening End',
+                    text: 'Intro End',
+                },
+                {
+                    time: skipTime?.outro?.start || 0,
+                    text: 'Outro Start',
+                },
+                {
+                    time: skipTime?.outro?.end || 0,
+                    text: 'Outro End',
                 },
             ],
             icons: {},
         })
-    
+
         artRef.current = art
 
         return () => {
@@ -113,22 +131,22 @@ export default function Player({ info, source, currentEpisode, skip }: Props) {
     useLayoutEffect(() => {
         if (artRef?.current) {
             const videoElement = artRef?.current.video
-            
+
             if (videoElement) {
                 videoElement.addEventListener('timeupdate', handleTimeUpdate)
             }
         }
-    
+
         return () => {
             if (artRef?.current) {
                 const videoElement = artRef?.current.video
-                
+
                 if (videoElement) {
                     videoElement.removeEventListener('timeupdate', handleTimeUpdate)
                 }
             }
         }
-        
+
     }, [artRef.current, currentEpisode])
 
     useLayoutEffect(() => {
@@ -147,11 +165,10 @@ export default function Player({ info, source, currentEpisode, skip }: Props) {
             existingButton && playerContainer?.removeChild(existingButton);
         }
     }, [isSkipTime])
-    
-    
+
     const handleTimeUpdate = () => {
         if (artRef?.current) {
-            if(intro?.start === Math.ceil(artRef?.current?.currentTime)) {
+            if (intro?.start === Math.ceil(artRef?.current?.currentTime)) {
                 setIsSkipTime(true)
                 setTimeout(() => {
                     setIsSkipTime(false)
@@ -162,10 +179,10 @@ export default function Player({ info, source, currentEpisode, skip }: Props) {
 
     const handleSkipIntro = () => {
         if (artRef?.current && artRef?.current?.currentTime) {
-            artRef.current.currentTime = intro.end 
+            artRef.current.currentTime = intro.end
             setIsSkipTime(false)
-        } 
+        }
     }
 
-    return <div className="artplayer-app h-full " />
+    return <div className="artplayer-app h-full" />
 }
