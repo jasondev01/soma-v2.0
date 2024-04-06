@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { FormEvent, useEffect, useState } from 'react'
 import SearchFunction from './SearchFunction'
 import { usePathname, useRouter } from 'next/navigation'
+import Image from 'next/image'
 
 const menus = [
     { menu: 'Home', href: '/' },
@@ -125,18 +126,8 @@ export default function Nav() {
                             />
                         </span>
                     </div> 
-                    <div className='hidden md:flex gap-1 justify-self-end items-center '>
+                    <div className='hidden md:flex gap-1 justify-self-end items-center md:max-w-[11rem] lg:max-w-[16rem] xl:max-w-[20rem] w-full'>
                         <SearchFunction />
-                        <Link href="https://www.buymeacoffee.com/somae" target='_blank' className='text-xs/[22px] uppercase font-semibold transition-all hover:bg-cyan-300 tracking-wide h-fit p-2 block relative'>
-                            Donate
-                            <img 
-                                src="/heart.svg"
-                                alt='heart donation'
-                                width={20}
-                                height={20}
-                                className='animate-ping absolute top-[25%] right-[35%]'
-                            />
-                        </Link>
                     </div>      
                 </div>
                 <div className="flex flex-col gap-[2.5px] md:hidden relative z-20 cursor-pointer"

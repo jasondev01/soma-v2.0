@@ -1,6 +1,8 @@
 import Link from 'next/link'
 
 const footerMenus = [
+    { menu: 'Donate', href: 'https://www.buymeacoffee.com/somae' },
+    { menu: '•', href: '' },
     { menu: 'DMCA', href: '/dmca' },
     { menu: '•', href: '' },
     { menu: 'GitHub', href: 'https://github.com/jasondev01/soma-v2.0' },
@@ -21,7 +23,7 @@ export default function Footer() {
                     </p>
                 </div>
 
-                <ul className='flex-1 shrink-0 flex gap-1 flex-wrap flex-row md:flex-col justify-around items-end mt-2 md:mt-0'>
+                <ul className='flex-1 shrink-0 flex gap-x-2 gap-y-[2px] flex-wrap flex-row md:flex-col justify-around items-end mt-2 md:mt-0'>
                 {footerMenus.map((menu, idx) => (
                     <li key={idx}>
                         <Link
@@ -39,6 +41,8 @@ export default function Footer() {
                     <li>&copy; soma-tv.</li>
                     <li className='bulletpoints'>•</li>
                     <li>2024</li>
+                    <li className='bulletpoints'>•</li>
+                    <li>Built with 🩵</li>
                 </ul>
             </div>
         </footer>
