@@ -4,14 +4,9 @@ import Link from 'next/link'
 import { FormEvent, useEffect, useState } from 'react'
 import SearchFunction from './SearchFunction'
 import { usePathname, useRouter } from 'next/navigation'
-import Image from 'next/image'
 
 const menus = [
     { menu: 'Home', href: '/' },
-    // { menu: 'recent', href: '/#recent' },
-    // { menu: 'top airing', href: '/#top-airing' },
-    // { menu: 'popular', href: '/#popular' },
-    // { menu: 'news', href: '/news' },
 ]
 
 export default function Nav() {

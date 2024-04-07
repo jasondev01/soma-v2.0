@@ -13,7 +13,6 @@ export default function Watched() {
     const [ watched, setWatched ]  = useState<WatchedInterface[] | null>([])
     const { getWatched, removeWatched } = useLocalStorage()
 
-
     useLayoutEffect(() => {
         const watchedAnime = getWatched()
         setWatched(watchedAnime)

@@ -7,7 +7,7 @@ export default function ScrollTopButton() {
 
     useEffect(() => {
         const handleScroll = () => {
-            if (window.scrollY > window.innerHeight) {
+            if (window.scrollY > 800) {
                 setShowButton(true)
             } else {
                 setShowButton(false)
@@ -32,7 +32,7 @@ export default function ScrollTopButton() {
         <>
             {showButton && (
                 <button
-                    className="fixed z-20 bottom-4 right-4 xl:bottom-52 xl:right-10 bg-gray-800 text-white rounded-full w-8 md:w-10 h-8 md:h-10 flex items-center justify-center hover:bg-gray-600 transition-all shadow-[0_0_5px_-1px]"
+                    className="fixed z-20 bottom-4 right-4 xl:bottom-56 xl:right-10 bg-gray-800 text-white rounded-full w-8 md:w-10 h-8 md:h-10 flex items-center justify-center hover:bg-gray-600 transition-all shadow-[0_0_5px_-1px]"
                     onClick={scrollToTop}
                 >
                     <svg

@@ -1,6 +1,7 @@
 'use client'
 
 import { AnilistTrendingInterface, VideoTrailerInterface } from "@/types"
+import Image from "next/image"
 import { useEffect, useState } from "react"
 
 type Props = {
@@ -22,7 +23,6 @@ export default function FeaturedBanner({ data, video_api }: Props) {
                     setVideo(result)
                 }, 3000)
             }
-
         } catch (error) {
             console.log({error})
         }
@@ -35,7 +35,8 @@ export default function FeaturedBanner({ data, video_api }: Props) {
     }, [data, video_api])
 
     return !video ? (
-        <img
+        <Image
+            priority
             src={data?.cover}
             alt={data?.title?.english}
             width={1200}

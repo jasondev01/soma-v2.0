@@ -28,7 +28,7 @@ export default function Footer() {
                     <li key={idx}>
                         <Link
                             href={menu.href}
-                            className={`text-xs font-medium hover:text-cyan-300 transition-all ${menu.href ? '' : 'pointer-events-none md:hidden'}`}
+                            className={`text-[11px] font-medium hover:text-cyan-300 transition-all ${menu.href ? '' : 'pointer-events-none md:hidden'}`}
                         >
                             {menu.menu}
                         </Link>
@@ -37,7 +37,7 @@ export default function Footer() {
                 </ul>
             </div>
             <div className=' border-t border-slate-300/10'>
-                <ul className='container flex gap-2 pt-2 pb-2.5 mt-1 text-xs justify-center md:justify-start items-center'>
+                <ul className='container flex gap-2 pt-2 pb-2.5 mt-1 text-[11px] justify-center md:justify-start items-center'>
                     <li>&copy; soma-tv.</li>
                     <li className='bulletpoints'>•</li>
                     <li>2024</li>

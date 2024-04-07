@@ -13,7 +13,7 @@ export const breakpoint1 = {
     }
 }
 
-export const breakpoint2 ={
+export const breakpoint2 = {
     1280: {
         slidesPerView: 5,
     },
