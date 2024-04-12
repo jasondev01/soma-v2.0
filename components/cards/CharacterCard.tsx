@@ -8,7 +8,7 @@ export default function CharacterCard({ data: char }: Props) {
 
 
     return (
-        <div className="h-[165px] lg:h-[250px] block relative group overflow-hidden border border-transparent hover:border-cyan-300 hover:shadow-[0px_0px_5px_1px] hover:shadow-cyan-300 transition-all duration-300 rounded-md"
+        <div className="h-[165px] lg:h-[210px] block relative group overflow-hidden border border-transparent hover:border-cyan-300 hover:shadow-[0px_0px_5px_1px] hover:shadow-cyan-300 transition-all duration-300 rounded-md"
             title={char?.name?.full}    
         >
             <div className="absolute top-0 left-0 w-full h-full z-[1]" />

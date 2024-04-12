@@ -36,12 +36,12 @@ export default function Footer() {
                 ))}
                 </ul>
             </div>
-            <div className=' border-t border-slate-300/10'>
+            <div className='border-t border-slate-300/10'>
                 <ul className='container flex gap-2 pt-2 pb-2.5 mt-1 text-[11px] justify-center md:justify-start items-center'>
                     <li>&copy; soma-tv.</li>
-                    <li className='bulletpoints'>•</li>
+                    <li className='select-none'>•</li>
                     <li>2024</li>
-                    <li className='bulletpoints'>•</li>
+                    <li className='select-none'>•</li>
                     <li>Built with 🩵</li>
                 </ul>
             </div>

@@ -22,12 +22,14 @@ export async function GET(req: NextRequest, { params }: Props) {
         let allResults: IAnimeResult[] = []
         let currentPage = 1
 
+        // let response = await gogo.search(query)
         let response = await anilist.search(query)
 
         allResults = allResults.concat(response.results)
 
         while (response?.hasNextPage) {
             currentPage++
+            // response = await gogo.search(query, currentPage)
             response = await anilist.search(query, currentPage)
             allResults = allResults.concat(response?.results)
         }
@@ -37,3 +39,5 @@ export async function GET(req: NextRequest, { params }: Props) {
         return NextResponse.json({ message: `An error occurred in search/[query] route: ${error}` })
     }
 }
+
+export const revalidate = 60 

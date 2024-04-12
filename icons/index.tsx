@@ -39,6 +39,25 @@ export const Folder = ({ className }: Props) => {
     )
 }
 
+export const SortBox = ({ className }: Props) => {
+    return (
+        <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            strokeWidth="1.5"
+            stroke="currentColor"
+            className={className}
+        >
+            <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M3.75 6A2.25 2.25 0 0 1 6 3.75h2.25A2.25 2.25 0 0 1 10.5 6v2.25a2.25 2.25 0 0 1-2.25 2.25H6a2.25 2.25 0 0 1-2.25-2.25V6ZM3.75 15.75A2.25 2.25 0 0 1 6 13.5h2.25a2.25 2.25 0 0 1 2.25 2.25V18a2.25 2.25 0 0 1-2.25 2.25H6A2.25 2.25 0 0 1 3.75 18v-2.25ZM13.5 6a2.25 2.25 0 0 1 2.25-2.25H18A2.25 2.25 0 0 1 20.25 6v2.25A2.25 2.25 0 0 1 18 10.5h-2.25a2.25 2.25 0 0 1-2.25-2.25V6ZM13.5 15.75a2.25 2.25 0 0 1 2.25-2.25H18a2.25 2.25 0 0 1 2.25 2.25V18A2.25 2.25 0 0 1 18 20.25h-2.25A2.25 2.25 0 0 1 13.5 18v-2.25Z"
+            ></path>
+        </svg>
+    )
+}
+
 export const SortLine = ({ className }: Props) => {
     return (
         <svg
@@ -153,34 +172,6 @@ export const ArrowRight = ({ className }: Props) => {
     )
 }
 
-export const PlayButton = ({ className }: Props) => {
-    return (
-        <svg
-            xmlns="http://www.w3.org/2000/svg"
-            className={className}
-            viewBox="0 0 48 48"
-        >
-            <defs>
-                <mask id="ipSPlay0">
-                    <g fill="none" strokeLinejoin="round" strokeWidth="4">
-                        <path
-                            fill="#fff"
-                            stroke="#fff"
-                            d="M24 44c11.046 0 20-8.954 20-20S35.046 4 24 4S4 12.954 4 24s8.954 20 20 20Z"
-                        />
-                        <path
-                            fill="#000"
-                            stroke="#000"
-                            d="M20 24v-6.928l6 3.464L32 24l-6 3.464l-6 3.464z"
-                        />
-                    </g>
-                </mask>
-            </defs>
-            <path fill="currentColor" d="M0 0h48v48H0z" mask="url(#ipSPlay0)" />
-        </svg>
-    )
-}
-
 export const StarOutline = ({ className }: Props) => {
     return (
         <svg
@@ -253,6 +244,27 @@ export const Cc = ({ className }: Props) => {
                 d="M4.6661 6.66699C4.29791 6.66699 3.99943 6.96547 3.99943 7.33366V24.667C3.99943 25.0352 4.29791 25.3337 4.6661 25.3337H27.3328C27.701 25.3337 27.9994 25.0352 27.9994 24.667V7.33366C27.9994 6.96547 27.701 6.66699 27.3328 6.66699H4.6661ZM8.66667 21.3333C8.29848 21.3333 8 21.0349 8 20.6667V11.3333C8 10.9651 8.29848 10.6667 8.66667 10.6667H14C14.3682 10.6667 14.6667 10.9651 14.6667 11.3333V12.6667C14.6667 13.0349 14.3682 13.3333 14 13.3333H10.8C10.7264 13.3333 10.6667 13.393 10.6667 13.4667V18.5333C10.6667 18.607 10.7264 18.6667 10.8 18.6667H14C14.3682 18.6667 14.6667 18.9651 14.6667 19.3333V20.6667C14.6667 21.0349 14.3682 21.3333 14 21.3333H8.66667ZM18 21.3333C17.6318 21.3333 17.3333 21.0349 17.3333 20.6667V11.3333C17.3333 10.9651 17.6318 10.6667 18 10.6667H23.3333C23.7015 10.6667 24 10.9651 24 11.3333V12.6667C24 13.0349 23.7015 13.3333 23.3333 13.3333H20.1333C20.0597 13.3333 20 13.393 20 13.4667V18.5333C20 18.607 20.0597 18.6667 20.1333 18.6667H23.3333C23.7015 18.6667 24 18.9651 24 19.3333V20.6667C24 21.0349 23.7015 21.3333 23.3333 21.3333H18Z"
                 fill="currentColor"
             />
+        </svg>
+    )
+}
+
+export const ClockIcon = ({ className }: Props) => {
+    return (
+        <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            strokeWidth="1.5"
+            stroke="currentColor"
+            aria-hidden="true"
+            data-slot="icon"
+            className={className}
+        >
+            <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
+            ></path>
         </svg>
     )
 }

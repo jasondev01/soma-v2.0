@@ -32,6 +32,16 @@ const nextConfig = {
                 hostname: 'media.kitsu.io',
                 pathname: '**',
             },
+            {
+                protocol: 'https',
+                hostname: 'artworks.thetvdb.com',
+                pathname: '**',
+            },
+            {
+                protocol: 'https',
+                hostname: 'cdn.myanimelist.net',
+                pathname: '**',
+            },
         ],
     },
 };

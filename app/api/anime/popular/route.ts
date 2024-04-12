@@ -11,9 +11,12 @@ export async function GET(req: NextRequest){
             return NextResponse.json({ message: "Unauthorized" }, { status: 401 })
         }
 
+        // const response = await gogo.fetchPopular()
         const response = await anilist.fetchPopularAnime()
         return NextResponse.json(response?.results, { status: 200 })
     } catch (error) {
         return NextResponse.json({ message: `This just happed in popuplar api route ${error}` })
     }
 }
+
+export const revalidate = 60 

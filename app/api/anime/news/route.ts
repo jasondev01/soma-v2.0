@@ -18,3 +18,5 @@ export async function GET(req: NextRequest){
         return NextResponse.json({ error, message: `This just happed in news api route ${error}` })
     }
 }
+
+export const revalidate = 120

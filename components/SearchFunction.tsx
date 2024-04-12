@@ -62,7 +62,7 @@ export default function SearchFunction() {
     }
 
     return (
-        <form onSubmit={handleQuerySubmit} className='md:max-w-[11rem] lg:max-w-[16rem] xl:max-w-[18rem] w-full relative'>
+        <form onSubmit={handleQuerySubmit} className='w-full relative'>
             <div className="relative w-full">
                 {query && (
                     <div className="absolute right-2 translate-y-1/2 cursor-pointer"
@@ -80,7 +80,7 @@ export default function SearchFunction() {
                 />
             </div>
             {query && (
-                <div className='min-h-10 w-full absolute origin-bottom mt-1 text-xs flex flex-col bg-black/60 '>
+                <div className='min-h-10 w-full absolute origin-bottom mt-1 text-xs flex flex-col bg-slate-900 '>
                     { searchResults.length > 0 ? (
                         searchResults?.slice(0, 5)?.map((result, idx) => (
                             <Link key={idx}
@@ -100,15 +100,12 @@ export default function SearchFunction() {
                                     />
                                 </div>
                                 <div className=' px-2'>
-                                    <span className='block text-sm font-semibold'>
+                                    <span className='block text-sm font-semibold line-clamp-2'>
                                         {result?.title?.english || result?.title?.romaji}
                                     </span>
                                     <div className="flex gap-2 ">
-                                        <p className="font-semibold">
-                                            Rating: 
-                                        </p>
-                                        <p className="flex gap-1 mt-[1px] text-xs">
-                                            {result?.rating}%
+                                        <p className="flex gap-1 mt-[1px] text-xs font-semibold">
+                                            {result?.releaseDate}
                                         </p>
                                     </div>
                                 </div>

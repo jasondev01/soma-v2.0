@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server"
 import { config } from "@/config"
 
-const { authorization_key, anilist } = config
+const { authorization_key, anilist, anify, external_api, gogo } = config
 
 type Props = {
     params: {
@@ -17,16 +17,24 @@ export async function GET(req: NextRequest, { params: { id } }: Props) {
             return NextResponse.json({ message: "Unauthorized" }, { status: 401 })
         }
         
-        const [ response, episodes  ] = await Promise.all([
+        const [ response, episodes,  ] = await Promise.all([
             anilist.fetchAnimeInfo(id),
-            anilist.fetchEpisodesListById(id)
+            anilist.fetchEpisodesListById(id),
         ])
+
+        let anifyEpisodes
+
+        if (!episodes || episodes?.length === 0) {
+            const anifyEpisodesInfo = await fetch(`${external_api}/episodes/${id}`, { next: { revalidate: 0 } }).then(res => res.json())
+
+            anifyEpisodes = anifyEpisodesInfo[0]?.episodes
+        }
 
         const result = {
             ...response,
-            mappings: undefined,
+            mappings: undefined,    
             artwork: undefined,
-            episodes: episodes,
+            episodes: episodes?.length !== 0 ? episodes : anifyEpisodes,
         }
 
         return NextResponse.json(result)
@@ -34,3 +42,5 @@ export async function GET(req: NextRequest, { params: { id } }: Props) {
         return NextResponse.json({ error, message: `This just happened in /anime/info/[id] route ${error}` })
     }
 }
+
+export const revalidate = 0

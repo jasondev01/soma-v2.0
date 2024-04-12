@@ -1,61 +1,125 @@
+'use client'
+
 import { AnilistInfoInterface } from "@/types"
-import { cleanDescription } from "@/utils/helper"
+import Image from "next/image"
+import parse from 'html-react-parser'
+import Link from "next/link"
+import { MdPlayCircle } from "react-icons/md"
+import { IoMdShare } from "react-icons/io"
+import { FacebookShareButton } from "react-share"
+import { FaRegStar } from "react-icons/fa6"
+import { useEffect, useState } from "react"
 
 type Props = {
     data: AnilistInfoInterface
 }
 
 export default function Overview({ data }: Props) {
+    const [ isHovered, setIsHovered ] = useState(false)
 
-    const infos = [
-        { name: 'Release Date:', value: data?.releaseDate },
-        { name: 'Type:', value: data?.type },
-        { name: 'Season:', value: data?.season },
-        { name: 'Genre/s:', value: data?.genres?.join(', ') },
-        { name: 'Studio/s:', value: data?.studios?.join(', ') },
-        { name: 'Country:', value: data?.countryOfOrigin },
-        { name: 'Sub or Dub:', value: data?.subOrDub },
-        { name: 'Status:', value: data?.status },
-        { name: 'Popularity:', value: data?.popularity },
-        { name: 'Rating:', value: `${data?.rating}%` },
-        { name: 'Total Episode:', value: `${data?.totalEpisodes} Episodes` },
-        { name: 'Othername/s:', value: data?.synonyms?.join(', ') },
+    const firstDataArray = [
+        { name: 'episodes', value: `${data?.totalEpisodes} Episodes` },
+        { name: 'rating', value: data?.rating ? ` ${data?.rating}%` : null},
+        { name: 'type', value: data?.type === 'TV' ? 'TV Show' : data?.type },
+        { name: 'status', value: data?.status },
     ]
 
+    const episodeOne = data?.episodes?.find(ep => ep?.number === 1)
+
+    const handleMouseEnter = () => {
+        setIsHovered(true)
+    }
+    
+    const handleMouseLeave = () => {
+        setIsHovered(false)
+    }
+
     return (
-        <div className="container w-full h-full">
-            <div className="bg-slate-800/60 h-full w-full rounded-xl flex flex-col items-center md:flex-row gap-5 p-2 md:p-4 relative overflow-hidden">
-                <div className="w-full md:w-[300px] absolute top-0 left-0 h-full shrink-0 md:relative">
-                    <div className="absolute top-0 left-0 w-full h-full hidden md:block" />
-                    <img 
-                        src={data?.image}
-                        alt={data?.title?.english}
-                        width={250}
-                        height={200}
-                        className="object-cover md:object-contain mx-auto md:mx-0 w-full h-full rounded-md opacity-40 md:opacity-100"
-                    /> 
+        <section className="pt-14 relative z-10">
+            <div className="container flex flex-col md:flex-row gap-x-4 gap-y-2 items-center md:items-end">
+                <div className="max-w-[180px] w-full shrink-0 h-[250px] rounded-md overflow-hidden relative"
+                    style={{
+                        boxShadow: `0 0 10px -2px ${data?.color || 'sky'}`
+                    }}
+                >
+                    <div className="absolute left-0 top-0 w-full h-full" />
+                    <Image
+                        src={data?.image}   
+                        alt={data?.title?.english || data?.title?.romaji}
+                        width={180}
+                        height={250}
+                        className="object-cover w-full h-full"
+                    />
                 </div>
-                <div className="flex-1 text-xs relative md:static">
-                    <h2 className="text-3xl font-semibold">
-                        {data?.title?.english}
+                <div className="flex-1 flex flex-col justify-center items-center md:items-start">
+                    <span className="text-sm text-white/80">
+                        {data?.season} {data?.releaseDate}
+                    </span>
+                    <h2 className="font-bold text-2xl md:text-[34px] tracking-wide mt-1.5 text-center md:text-left">
+                        {data?.title?.english || data?.title?.romaji}
                     </h2>
-                    <p className="mt-2 leading-[17px]">
-                        {cleanDescription(data?.description)}
-                    </p>
-                    <div className="mt-2">
-                        {infos?.map(info => (
-                            <div key={info?.name} className="flex gap-x-2 gap-y-1 first:mt-2 mt-1 flex-wrap">
-                                <span className="opacity-80">
-                                    {info?.name}
-                                </span>
-                                <span className="text-semibold line-clamp-[8]">
-                                    {info?.value}
-                                </span>
-                            </div>
+                    <ul className="text-xs font-medium tracking-wide mt-1.5 flex gap-x-2">
+                        {data?.genres?.map(genre => (
+                            <li key={genre} className="text-white/90">
+                                {genre}
+                            </li>
                         ))}
+                    </ul>
+                    <ul className="flex gap-x-2 mt-2">
+                        {firstDataArray?.map(({ name, value }) => value && (
+                            <li key={name} 
+                                className="px-2 py-1 rounded-md text-xs font-semibold text-white flex gap-x-1 items-center" 
+                                style={{
+                                    background: data?.color?.includes("fff") ? "#06B6D4" : data?.color || "#06B6D4"
+                                }}
+                            >
+                                {name === 'rating' && <FaRegStar />} {value}
+                            </li>
+                        ))}
+                    </ul>
+                    <div className="container mt-3 block md:hidden">
+                        <Link
+                            href={`/anime/watch/${data?.id}?episode=${episodeOne?.id}`}
+                            className="text-xs uppercase font-bold btn btn-primary md:!w-[180px] !flex justify-center items-center gap-x-1 rounded-full mx-auto"
+                            style={{
+                                backgroundColor: data?.color || 'sky',
+                                borderColor: data?.color || 'sky'
+                            }}
+                        >
+                           <MdPlayCircle className="size-5 mr-1" />
+                            Watch Now
+                        </Link>
+                    </div>
+                    <div className="text-[13px] lg:text-[15px] mt-3 md:mt-2.5 h-fit md:h-[100px] md:overflow-auto text-white/80 md:pr-4 description">
+                        {parse(data?.description as string)}
                     </div>
                 </div>
             </div>
-        </div>
+            <div className="container mt-4 hidden md:flex items-center justify-start gap-x-4">
+                <Link
+                    href={`/anime/watch/${data?.id}?episode=${episodeOne?.id}`}
+                    className="text-sm uppercase font-bold btn btn-primary !w-[180px] items-center !flex justify-center gap-x-1 rounded-full" 
+                    style={{
+                        backgroundColor: data?.color || 'sky',
+                        borderColor: data?.color || 'sky'
+                    }}
+                >
+                    <MdPlayCircle className="size-5 mr-1" />
+                    Watch Now
+                </Link>
+
+                <FacebookShareButton 
+                    url={`https://www.soma-tv.me/anime/${data?.id}`}
+                    className="size-9 grid place-items-center rounded-full transition-all duration-300 hover:!border-cyan-800 hover:shadow-[0px_0px_5px_1px] hover:shadow-cyan-300"
+                    onMouseEnter={() => handleMouseEnter()}
+                    onMouseLeave={() => handleMouseLeave()}
+                    style={{
+                        backgroundColor: isHovered ? '#155E75' : data?.color
+                    }}
+                >
+                    <IoMdShare className="size-5" />
+                </FacebookShareButton>
+            </div>
+        </section>
     )
 }

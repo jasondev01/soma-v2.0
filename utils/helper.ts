@@ -1,3 +1,4 @@
+import { WatchedInterface } from "@/types"
 
 export const random = (arr: any[]) => {
     if (typeof arr === "undefined") return
@@ -32,4 +33,10 @@ export const formatTime = (totalMinutes: number): string => {
     }
     
     return formattedTime
+}
+
+export const isEpisodeWatched = ( episodeId: string, watched?: WatchedInterface,) => {
+    return watched && watched?.ep?.length !== 0
+        ? watched?.ep?.some((ep) => ep.id === episodeId)
+        : false
 }

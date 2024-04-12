@@ -21,6 +21,9 @@ export async function GET(req: NextRequest, { params: { id } }: Props) {
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
+            },
+            next: {
+                revalidate: 60
             }
         })
 

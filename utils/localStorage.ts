@@ -1,4 +1,4 @@
-import { AnilistEpisodeInterface, WatchedInterface } from "@/types"
+import { WatchedInterface } from "@/types"
 
 type Props = {
     id: string
@@ -7,7 +7,14 @@ type Props = {
     ep: {
         id: string
         number?: number
+        duration?: number
+        timeWatched?: number
     }
+    nextEp: {
+        id: string
+        number?: number
+    }
+    color: string
 }
 
 export default function useLocalStorage() {
@@ -26,7 +33,7 @@ export default function useLocalStorage() {
         return null
     }
 
-    const setWatched = ({ id, title, image, ep }: Props) => {
+    const setWatched = ({ id, title, image, ep, nextEp, color }: Props) => {
         try {
             if (typeof window !== "undefined") {
                 const watched = localStorage.getItem("watched")
@@ -35,13 +42,21 @@ export default function useLocalStorage() {
                 const existingItemIndex = watchedArr.findIndex(item => item?.id === id)
 
                 if (existingItemIndex !== -1) {
-                    watchedArr.push(watchedArr.splice(existingItemIndex, 1)[0])
+                    const removedItem = watchedArr.splice(existingItemIndex, 1)[0]
+                    removedItem.nextEp.id = nextEp?.id
+                    removedItem.nextEp.number = nextEp?.number
+                    watchedArr.push(removedItem)
                     const existingEpisodeIndex = watchedArr[watchedArr.length - 1]?.ep?.findIndex(episode => episode?.id === ep?.id)
                     
                     if (existingEpisodeIndex !== -1) {
-                        watchedArr[watchedArr.length - 1].ep.push(watchedArr[watchedArr.length - 1]?.ep?.splice(existingEpisodeIndex, 1)[0])
+                        const removedEpisode = watchedArr[watchedArr.length - 1]?.ep?.splice(existingEpisodeIndex, 1)[0]
+
+                        removedEpisode.timeWatched = ep?.timeWatched
+                        removedEpisode.duration = ep?.duration
+                    
+                        watchedArr[watchedArr.length - 1].ep.push(removedEpisode)
                     } else {
-                        watchedArr[watchedArr.length - 1]?.ep?.push(ep!)
+                        watchedArr[watchedArr.length - 1]?.ep?.push(ep)
                     }
                 } else {
                     watchedArr.push({
@@ -49,6 +64,8 @@ export default function useLocalStorage() {
                         title,
                         image,
                         ep: ep ? [ep] : [],
+                        nextEp,
+                        color,
                     })
                 }
                 localStorage.setItem("watched", JSON.stringify(watchedArr))

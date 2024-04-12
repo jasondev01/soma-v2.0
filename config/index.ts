@@ -12,5 +12,6 @@ export const config = {
     gogo: new ANIME.Gogoanime(),
     zoro: new ANIME.Zoro(),
     anilist: new META.Anilist(),
+    anify: new ANIME.Anify(),
     ann: new NEWS.ANN()
 }

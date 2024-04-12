@@ -68,7 +68,7 @@ export default function Nav() {
     }
 
     return (
-        <header className={`sticky top-0 h-14 xl:h-20 ${isScrolled ? 'bg-black' : 'bg-gradient-to-b from-black/50 to-black/10'} z-[999999]`}>
+        <header className={`sticky top-0 h-14 xl:h-20 ${isScrolled ? 'bg-black shadow-sm shadow-black' : 'bg-gradient-to-b from-black/50 to-black/10'} z-[999999]`}>
             <nav className='container h-full flex items-center justify-between md:justify-normal'>
                 <div className='text-3xl md:text-4xl font-extrabold relative z-30'>
                     <Link href="/">

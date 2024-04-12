@@ -17,6 +17,9 @@ export async function GET(req: NextRequest) {
             headers: {
                 'Authorization': `Bearer ${tmdb_access_key}`,
                 'Accept': 'application/json'
+            },
+            next: {
+                revalidate: 60
             }
         })
 

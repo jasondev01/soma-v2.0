@@ -1,32 +1,83 @@
-import { getInfo, getSkipTimes } from "@/utils/get-anime"
-import Details from "./_components/Details"
-import AnimePlayer from "./_components/AnimePlayer"
+import InfoBanner from "./_components/InfoBanner"
+import Overview from "./_components/Overview"
+import Relations from "./_components/Relations"
+import Episodes from "./_components/Episodes"
+import Characters from "./_components/Characters"
+import { getInfo } from "@/utils/get-anime"
 import { config } from "@/config"
-import SetWatchedHistory from "./_components/SetWatchedHistory"
+import { notFound } from "next/navigation"
+import { Metadata } from "next"
+import Recommendations from "@/components/Recommendations"
 
 type Props = {
     params: {
         anime: string
     }
+}
 
-    searchParams: {
-        watch: string
+const { baseUrl } = config
+
+export async function generateMetadata({ params: { anime: id } }: Props): Promise<Metadata> {
+    const response  = await getInfo(id)
+
+    if (!response || response?.error ) {
+        return {
+            title: 'Page Not Found',
+            description: `The anime with the id ${id} was not found. Please try again later.`,
+        }
+    }
+
+    return {
+        metadataBase: new URL(baseUrl as string),
+        // title: !watch ? response?.title?.english || response?.title?.romaji : `Watch ${watch?.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ')}`,
+        title:  response?.title?.english || response?.title?.romaji,
+        description: response?.description?.slice(0, 170),
+        alternates: {
+            canonical: `/anime/${id}`
+        },
+        robots: {
+            index: true,
+            follow: true,
+            googleBot: {
+                index: true,
+                follow: true,
+            }
+        },
+        openGraph: {
+            images: [
+                {
+                    url: response?.cover || response?.image,
+                    width: 800,
+                    height: 600,
+                    alt: response?.title?.english || response?.title?.romaji,
+                },
+                {
+                    url: response?.cover || response?.image,
+                    width: 1800,
+                    height: 1600,
+                    alt: response?.title?.english || response?.title?.romaji,
+                }
+            ],
+            url: `/anime/${id}`,
+            locale: 'en_US',
+            type: 'website',
+        },
     }
 }
 
-const { disqus_shortname } = config
+export default async function AnimeInfoPage({ params: { anime: id }}: Props) {
+    const response = await getInfo(id)
 
-export default async function AnimeInfoPage({ params: { anime: id }, searchParams: { watch } }: Props) {
-    const [ response, skip ] = await Promise.all([
-        getInfo(id),
-        getSkipTimes(id)
-    ])
+    if (!response || response?.error) return notFound()
 
     return (
-        <main>
-            <AnimePlayer data={response} watchParams={watch} skip={skip?.episodes} />
-            <Details data={response} watchParams={watch} disqus_shortname={disqus_shortname as string}/>
-            <SetWatchedHistory info={response} watchParams={watch} />
+        <main className="relative">
+            <InfoBanner data={response} />
+            <Overview data={response} />
+            <Characters data={response?.characters} />
+            <Episodes data={response?.episodes} anime={response} />
+            <Relations data={response?.relations} />
+            <Recommendations data={response?.recommendations} />
         </main>
     )
 }

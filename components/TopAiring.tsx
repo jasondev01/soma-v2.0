@@ -13,7 +13,7 @@ export default function TopAiring({ data }: Props) {
                 <h2 className="text-lg md:text-xl font-bold uppercase after">
                     Trending Anime
                 </h2>
-                <SliderSection data={data} />
+                <SliderSection data={data} isCardComponent={true} />
             </div>
         </section>
     )

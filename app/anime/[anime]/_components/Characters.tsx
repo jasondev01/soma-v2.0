@@ -11,36 +11,23 @@ type Props = {
 
 export default function Characters({ data }: Props) {
     return (
-        <div className="container w-full h-full">
-            <div className="w-full">
-                <h2 className="text-lg md:text-xl font-bold uppercase">
-                    Main
-                </h2>
-                <Slider className="!mt-2">
-                    {data
-                        ?.filter(data => data.role === 'MAIN')
-                        ?.map(char => (
-                        <SwiperSlide key={char?.id}>
-                            <CharacterCard data={char} />
-                        </SwiperSlide>
-                    ))}
-                </Slider>
+        <section className="pt-5">
+            <div className="container w-full h-full">
+                <h3 className="text-lg md:text-xl font-bold uppercase after">
+                    Characters
+                </h3>
+                <div className="w-full mt-5 ">
+                    <Slider className="!mt-2 characters">
+                        {data
+                            ?.sort((a, b) => (a.role === 'MAIN' ? -1 : 1))
+                            ?.map(char => (
+                            <SwiperSlide key={char?.id}>
+                                <CharacterCard data={char} />
+                            </SwiperSlide>
+                        ))}
+                    </Slider>
+                </div>
             </div>
-
-            <div className="w-full mt-5">
-                <h2 className="text-lg md:text-xl font-bold uppercase">
-                    Other Roles
-                </h2>
-                <Slider className="!mt-2">
-                    {data
-                        ?.filter(data => data.role !== 'MAIN')
-                        ?.map(char => (
-                        <SwiperSlide key={char?.id}>
-                            <CharacterCard data={char} />
-                        </SwiperSlide>
-                    ))}
-                </Slider>
-            </div>
-        </div>
+        </section>
     )
 }

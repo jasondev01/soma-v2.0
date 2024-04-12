@@ -5,7 +5,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
         {
             url: "https://www.soma-tv.me",
             lastModified: new Date(),
-            changeFrequency: "daily",
+            changeFrequency: "weekly",
             priority: 1,
         },
     ]

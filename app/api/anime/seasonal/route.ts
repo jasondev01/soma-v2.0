@@ -16,6 +16,9 @@ export async function GET(req: NextRequest) {
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
+            },
+            next: {
+                revalidate: 60
             }
         })
 

@@ -73,6 +73,11 @@ export interface AnilistInfoInterface {
     description: string
     status: string
     releaseDate: number
+    nextAiringEpisode:{
+        airingTime: number,
+        timeUntilAiring: number,
+        episode: number,
+    }
     startDate: { year: number, month: number, day: number },
     endDate: { year: number, month: number, day: number },
     totalEpisodes: number
@@ -199,7 +204,8 @@ export interface SourceAnilistInterface {
         Referer: string
     }
     sources: SourcesInterface[]
-    quality: string
+    quality?: string
+    download?: string
 }
 
 export interface SourcesInterface {
@@ -247,8 +253,14 @@ export interface WatchedInterface {
     ep: {
         id: string
         number?: number
-        url?: string
+        duration?: number
+        timeWatched?: number
     }[]
+    nextEp: {
+        id: string
+        number?: number
+    }
+    color: string
 }
 
 export interface TopSeasonalInterface {
