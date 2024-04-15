@@ -20,7 +20,7 @@ export default function Recent({ data }: Props) {
                 <Slider>
                     {data?.map(anime => (
                         <SwiperSlide key={anime?.id}>
-                            <Card data={anime} type="recent" isComponent={true} />
+                            <Card data={anime} type="recent"/>
                         </SwiperSlide>
                     ))}
                 </Slider>

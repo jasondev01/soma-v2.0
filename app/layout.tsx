@@ -4,9 +4,7 @@ import "./globals.css"
 import Nav from "@/components/Nav"
 import Footer from "@/components/Footer"
 import ScrollTopButton from "@/components/ScrollTopButton"
-import { Analytics } from "@vercel/analytics/react"
 import ScrollTopDefault from "@/components/ScrollTopDefault"
-import Notice from "@/components/Notice"
 
 const inter = Inter({ subsets: ["latin"] })
 
@@ -46,8 +44,6 @@ export default function RootLayout({ children, }: Readonly<Props>) {
                 <Footer />
                 <ScrollTopButton />
                 <ScrollTopDefault />
-                <Analytics mode="production"/>
-                <Notice />
             </body>
         </html>
     )

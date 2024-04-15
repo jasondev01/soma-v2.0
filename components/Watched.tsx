@@ -8,7 +8,7 @@ import { useEffect, useState } from "react"
 import Slider from "./Slider"
 import { SwiperSlide } from "swiper/react"
 import { breakpoint2 } from "@/utils/breakpoints"
-import { IoChevronForward } from "react-icons/io5";
+import { IoChevronForward } from "react-icons/io5"
 
 export default function Watched() {
     const [ watched, setWatched ]  = useState<WatchedInterface[] | null>([])
@@ -65,7 +65,8 @@ export default function Watched() {
                                     key={anime?.ep?.at(-1)?.id}
                                     className="h-[165px] lg:h-[210px] block relative group overflow-hidden border border-transparent transition-all duration-300"
                                     style={{
-                                        borderColor: itemHovered === anime?.id ? anime?.color : '',                                        boxShadow: itemHovered === anime?.id ? `0 0 5px 1px ${anime?.color}` : '',
+                                        borderColor: itemHovered === anime?.id ? anime?.color || "#67e8f9" : '',                                        
+                                        boxShadow: itemHovered === anime?.id ? `0 0 5px 1px ${anime?.color || "#67e8f9"} ` : '',
                                     }}
                                     onMouseEnter={() => onMouseEnter(anime?.id)}
                                     onMouseLeave={() => onMouseLeave()}
@@ -115,17 +116,17 @@ export default function Watched() {
                                     <div className="absolute z-[2] bottom-0 left-0 w-full p-2 pt-5 bg-gradient-to-b from-transparent to-black flex flex-col justify-center flex-wrap">
                                         <h3 className="text-sm line-clamp-2 font-semibold"
                                             style={{
-                                                textShadow: itemHovered === anime?.id ? `0 2px 2px ${anime?.color}` : ''
+                                                textShadow: itemHovered === anime?.id ? `0 2px 2px ${anime?.color}` : '0 2px 2px #67e8f9'
                                             }}
                                         >
                                             {anime?.title}
                                         </h3>
                                         <span className="text-[11px] tracking-wide flex gap-1 items-center capitalize font-medium"
                                             style={{
-                                                textShadow: itemHovered === anime?.id ? `0 4px 4px ${anime?.color}` : ''
+                                                textShadow: itemHovered === anime?.id ? `0 4px 4px ${anime?.color}` : '0 2px 2px #67e8f9'
                                             }}
                                         >
-                                           {formatTime(anime?.ep?.at(-1)?.timeWatched as number, anime?.ep?.at(-1)?.duration as number )} - Episode {anime?.ep?.at(-1)?.number}
+                                           {anime?.ep?.at(-1)?.timeWatched && formatTime(anime?.ep?.at(-1)?.timeWatched as number, anime?.ep?.at(-1)?.duration as number)} - Episode {anime?.ep?.at(-1)?.number}
                                         </span>
                                     </div>
                                     <div className="h-[1px] bg-cyan-300 absolute left-0 bottom-0 z-[2]"

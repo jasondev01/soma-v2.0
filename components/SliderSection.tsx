@@ -8,17 +8,16 @@ import Card from "./cards/Card"
 type Props = {
     data: AnilistTrendingInterface[] 
     type?: string
-    isCardComponent: boolean
 }
 
-export default function SliderSection({ data, type, isCardComponent }: Props) {
+export default function SliderSection({ data, type }: Props) {
     return (
         <Slider>
             {data
                 ?.sort((a, b) => b.rating - a.rating)
                 ?.map(anime => (
                     <SwiperSlide key={anime?.id}>
-                        <Card data={anime} type={type} isComponent={isCardComponent} />
+                        <Card data={anime} type={type} />
                     </SwiperSlide>
             ))}
         </Slider>

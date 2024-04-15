@@ -1,15 +1,13 @@
 import { AnilistRecentInterface, AnilistRecommendationInterface, AnilistRelationInterface, AnilistTrendingInterface } from "@/types";
-import Image from "next/image";
 import Link from "next/link";
 import { MdPlayCircle } from "react-icons/md";
 
 type Props = {
     data: AnilistRecentInterface | AnilistTrendingInterface | AnilistRelationInterface | AnilistRecommendationInterface
     type?: string
-    isComponent: boolean
 }
 
-export default function Card({ data: anime, type, isComponent }: Props) {
+export default function Card({ data: anime, type }: Props) {
     return (
         <>
             <Link 
@@ -18,25 +16,14 @@ export default function Card({ data: anime, type, isComponent }: Props) {
                 title={anime?.title?.english}    
             >
                 <div className="absolute top-0 left-0 w-full h-full z-[1]" />
-                {!isComponent ? (
-                    <img 
-                        src={anime?.image}
-                        alt={`Soma | ${anime?.title?.english}`}
-                        width={180}
-                        height={180}
-                        className="h-full w-full object-cover group-hover:scale-[102%] transition-all duration-300"
-                        title={`Soma | ${anime?.title?.english}`}
-                    />
-                ): (
-                    <Image 
-                        src={anime?.image}
-                        alt={`Soma | ${anime?.title?.english}`}
-                        width={180}
-                        height={180}
-                        className="h-full w-full object-cover group-hover:scale-[102%] transition-all duration-300"
-                        title={`Soma | ${anime?.title?.english}`}
-                    />
-                )}
+                <img 
+                    src={anime?.image}
+                    alt={`Soma | ${anime?.title?.english}`}
+                    width={180}
+                    height={180}
+                    className="h-full w-full object-cover group-hover:scale-[102%] transition-all duration-300"
+                    title={`Soma | ${anime?.title?.english}`}
+                />
                 {type === 'recent' ? (
                     <span className="absolute z-[2] top-0 right-0 px-3 py-1.5 bg-black/80 text-[11px]/4 font-semibold uppercase rounded-bl-md group-hover:text-cyan-300 transition-all">
                         Ep {anime?.episodeNumber}

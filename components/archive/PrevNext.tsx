@@ -1,6 +1,6 @@
 import { AnilistEpisodeInterface, AnilistInfoInterface } from "@/types"
 import Link from "next/link"
-import SelectEpisode from "../../watch/_components/SelectEpisode"
+import SelectEpisode from "./SelectEpisode"
 import { ArrowLeft, ArrowRight } from "@/icons"
 
 type Props = {

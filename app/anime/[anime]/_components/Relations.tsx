@@ -18,7 +18,7 @@ export default function Relations({ data }: Props) {
             <Slider>
                 {data?.map(anime => (
                     <SwiperSlide key={anime?.id}>
-                        <Card data={anime} isComponent={false} />
+                        <Card data={anime} />
                     </SwiperSlide>
                 ))}
             </Slider>

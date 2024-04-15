@@ -161,6 +161,7 @@ export default function Player({ info, source, currentEpisode, skip }: Props) {
     }, [artRef.current, currentEpisode])
 
     useEffect(() => {
+        if(intro?.start < 10 || intro?.start === 0) return
         const playerContainer = document.querySelector('.artplayer-app .art-video-player')
         playerContainer?.classList.add('relative')
 
