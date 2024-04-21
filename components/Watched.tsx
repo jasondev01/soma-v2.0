@@ -8,7 +8,7 @@ import { useEffect, useState } from "react"
 import Slider from "./Slider"
 import { SwiperSlide } from "swiper/react"
 import { breakpoint2 } from "@/utils/breakpoints"
-import { IoChevronForward } from "react-icons/io5"
+import { IoChevronForward } from "react-icons/io5";
 
 export default function Watched() {
     const [ watched, setWatched ]  = useState<WatchedInterface[] | null>([])

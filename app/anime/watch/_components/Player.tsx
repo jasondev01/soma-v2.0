@@ -12,7 +12,7 @@ type Props = {
     info: AnilistInfoInterface
     source: SourceAnilistInterface
     currentEpisode?: AnilistEpisodeInterface
-    skip: SkipTimeInterface[]
+    skip?: SkipTimeInterface[]
 }
 
 export default function Player({ info, source, currentEpisode, skip }: Props) {

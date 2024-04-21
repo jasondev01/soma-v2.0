@@ -1,7 +1,6 @@
 import { StarOutline } from "@/icons";
 import { TopSeasonalInterface } from "@/types";
 import { formatTime } from "@/utils/helper";
-import Image from "next/image";
 import Link from "next/link";
 
 type Props = {
@@ -14,7 +13,7 @@ export default function TopSeasonalCard({ data }: Props) {
             <div className="flex gap-x-3 items-center">
                 <div className="h-[60px] w-[48px] shrink-0 relative">
                     <div className="absolute top-0 left-0 w-full h-full" />
-                    <Image 
+                    <img 
                         src={data?.coverImage}
                         alt={data?.title?.english || data?.title?.romaji}
                         width={48}

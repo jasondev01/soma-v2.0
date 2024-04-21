@@ -99,7 +99,7 @@ export default function Nav() {
                         </form>
                     </ul> 
                     <div className='block md:hidden w-[70%] mx-auto text-center -mt-24'>
-                        <Link href="https://www.buymeacoffee.com/somae" target='_blank' className='text-base/[22px] uppercase font-semibold tracking-wide h-fit p-2 block relative'>
+                        {/* <Link href="https://www.buymeacoffee.com/somae" target='_blank' className='text-base/[22px] uppercase font-semibold tracking-wide h-fit p-2 block relative'>
                             Donate
                             <img 
                                 src="/heart.svg"
@@ -109,7 +109,7 @@ export default function Nav() {
                                 className='animate-ping absolute top-[25%] left-[45%] translate-x-[45%]'
                                 
                             />
-                        </Link>
+                        </Link> */}
                         <span className='text-xs tracking-wide font-semibold flex gap-1 w-full justify-center'>
                             Built with Love
                             <img 

@@ -5,6 +5,7 @@ import { config } from '@/config'
 import Disqus from './Disqus'
 import WatchEpisodes from './WatchEpisodes'
 import AnimePlayer from './AnimePlayer'
+import Notice from './Notice'
 
 type Props = {
     data: AnilistInfoInterface
@@ -23,11 +24,12 @@ export default async function WatchContents({ data, id, episode,  }: Props) {
                 <div className="container h-full relative shrink-0 flex gap-x-4">
                     <div className='w-full xl:w-[72%] pt-3'>
                         <AnimePlayer data={data} id={id} episode={episode} currentEpisode={currentEpisode} />
+                        <Notice />
                         <div className='pt-3.5 pb-3 border-b border-slate-300/10'>
-                            <h2 className='text-lg md:text-3xl font-semibold tracking-wide'>
+                            <h2 className='text-lg md:text-2xl font-semibold tracking-wide'>
                                 {data?.title?.english || data?.title?.romaji}
                             </h2>
-                            <h3 className='text-[13px] md:text-lg font-medium tracking-wide'>
+                            <h3 className='text-[13px] md:text-sm font-medium tracking-wide'>
                                 Episode {currentEpisode?.number} {currentEpisode?.title && `- ${currentEpisode?.title}`}
                             </h3>
                         </div>

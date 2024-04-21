@@ -1,13 +1,13 @@
 import Link from 'next/link'
 
 const footerMenus = [
-    { menu: 'Donate', href: 'https://www.buymeacoffee.com/somae' },
-    { menu: '•', href: '' },
-    { menu: 'DMCA', href: '/dmca' },
-    { menu: '•', href: '' },
-    { menu: 'GitHub', href: 'https://github.com/jasondev01/soma-v2.0' },
-    { menu: '•', href: '' },
-    { menu: 'Terms of Service', href: '/terms' },
+    // { menu: 'Donate', href: 'https://www.buymeacoffee.com/somae' },
+    // { menu: '•', href: '' },
+    // { menu: 'DMCA', href: '/dmca' },
+    // { menu: '•', href: '' },
+    // { menu: 'GitHub', href: 'https://github.com/jasondev01/soma-v2.0' },
+    // { menu: '•', href: '' },
+    // { menu: 'Terms of Service', href: '/terms' },
 ]
 
 export default function Footer() {
@@ -24,7 +24,7 @@ export default function Footer() {
                 </div>
 
                 <ul className='flex-1 shrink-0 flex gap-x-2 gap-y-[2px] flex-wrap flex-row md:flex-col justify-around items-end mt-2 md:mt-0'>
-                {footerMenus.map((menu, idx) => (
+                {/* {footerMenus.map((menu, idx) => (
                     <li key={idx}>
                         <Link
                             href={menu.href}
@@ -33,17 +33,23 @@ export default function Footer() {
                             {menu.menu}
                         </Link>
                     </li>
-                ))}
+                ))} */}
                 </ul>
             </div>
-            <div className='border-t border-slate-300/10'>
-                <ul className='container flex gap-2 pt-2 pb-2.5 mt-1 text-[11px] justify-center md:justify-start items-center'>
-                    <li>&copy; soma-tv.</li>
+            <div className='border-t border-slate-300/10 h-[50px] flex items-center'>
+                {/* <ul className='container flex gap-2 pt-2 pb-2.5 mt-1 text-[11px] justify-center md:justify-start items-center'>
+                    <li className=''>&copy; 2024 SOMA-TV™ | </li>
                     <li className='select-none'>•</li>
                     <li>2024</li>
                     <li className='select-none'>•</li>
                     <li>Built with 🩵</li>
-                </ul>
+
+                </ul> */}
+                <div className='container'>
+                    <p className='mt-1 text-[11px] text-left text-white/50 tracking-wide'>
+                        &copy; 2024 <a href="/" className='hover:text-white/100 transition-all'>SOMA-TV.™</a> | Built with <span className='text-white/100'>🩵</span>
+                    </p>
+                </div>
             </div>
         </footer>
     )

@@ -11,7 +11,6 @@ export async function GET(req: NextRequest) {
             return NextResponse.json({ message: "Unauthorized" }, { status: 401 })
         }
 
-        // const response = await gogo.fetchRecentEpisodes()
         const response = await anilist.fetchRecentEpisodes()
         return NextResponse.json(response.results)
     } catch (error) {

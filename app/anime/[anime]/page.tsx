@@ -29,7 +29,6 @@ export async function generateMetadata({ params: { anime: id } }: Props): Promis
 
     return {
         metadataBase: new URL(baseUrl as string),
-        // title: !watch ? response?.title?.english || response?.title?.romaji : `Watch ${watch?.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ')}`,
         title:  response?.title?.english || response?.title?.romaji,
         description: response?.description?.slice(0, 170),
         alternates: {

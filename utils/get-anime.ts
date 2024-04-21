@@ -9,23 +9,14 @@ const headers = new Headers({
     'Authorization': `Bearer ${authorization_key}`,
 })
 
-const cache = {
-    headers: headers,
-    next: {
-        revalidate: 120 // two minutes
-    }
-}
-
-const nocache = {
-    headers: headers,
-    next: {
-        revalidate: 0 // 0 minutes
-    }
-}
-
 export const getRecent = async () => {
     try {
-        const response = await fetch(`${baseUrl}/api/anime/recent`, cache)
+        const response = await fetch(`${baseUrl}/api/anime/recent`, {
+            headers: headers,
+            next: {
+                revalidate: 60 // one minute
+            }
+        })
 
         return await response.json()
     } catch (error) {
@@ -35,7 +26,12 @@ export const getRecent = async () => {
 
 export const getTopAiring = async () => {
     try {
-        const response = await fetch(`${baseUrl}/api/anime/top-airing`, cache)
+        const response = await fetch(`${baseUrl}/api/anime/top-airing`, {
+            headers: headers,
+            next: {
+                revalidate: 60 // one minute
+            }
+        })
 
         return await response.json()
     } catch (error) {
@@ -45,7 +41,12 @@ export const getTopAiring = async () => {
 
 export const getPopular = async () => {
     try {
-        const response = await fetch(`${baseUrl}/api/anime/popular`, cache)
+        const response = await fetch(`${baseUrl}/api/anime/popular`, {
+            headers: headers,
+            next: {
+                revalidate: 60 // one minute
+            }
+        })
 
         return await response.json()
     } catch (error) {
@@ -55,7 +56,12 @@ export const getPopular = async () => {
 
 export const getSeasonal = async () => {
     try {
-        const response = await fetch(`${baseUrl}/api/anime/seasonal`, cache)
+        const response = await fetch(`${baseUrl}/api/anime/seasonal`, {
+            headers: headers,
+            next: {
+                revalidate: 60 // one minute
+            }
+        })
 
         return await response.json()
     } catch (error) {
@@ -65,7 +71,12 @@ export const getSeasonal = async () => {
 
 export const getInfo = async (id: string) => {
     try {
-        const response = await fetch(`${baseUrl}/api/anime/info/${id}`, cache)
+        const response = await fetch(`${baseUrl}/api/anime/info/${id}`, {
+            headers: headers,
+            next: {
+                revalidate: 60 // one minute
+            }
+        })
 
         return await response.json()
     } catch (error) {
@@ -75,7 +86,12 @@ export const getInfo = async (id: string) => {
 
 export const getSources = async (episode: string) => {
     try {
-        const response = await fetch(`${baseUrl}/api/anime/watch/${episode}`, nocache)
+        const response = await fetch(`${baseUrl}/api/anime/watch/${episode}`, {
+            headers: headers,
+            next: {
+                revalidate: 60 // one minute
+            }
+        })
         return await response.json()
     } catch (error) {
         console.log('getSources', error)
@@ -84,7 +100,12 @@ export const getSources = async (episode: string) => {
 
 export const getSkipTimes = async (id: string) => {
     try {
-        const response = await fetch(`${baseUrl}/api/anime/skip/${id}`, cache)
+        const response = await fetch(`${baseUrl}/api/anime/skip/${id}`, {
+            headers: headers,
+            next: {
+                revalidate: 60 // one minute
+            }
+        })
         return await response.json()
     } catch (error) {
         console.log('getSkipTimes', error)
@@ -93,7 +114,12 @@ export const getSkipTimes = async (id: string) => {
 
 export const getTMDBResource = async (title: string) => {
     try {
-        const response = await fetch(`${baseUrl}/api/anime/tmdb?query=${title}`, cache)
+        const response = await fetch(`${baseUrl}/api/anime/tmdb?query=${title}`, {
+            headers: headers,
+            next: {
+                revalidate: 60 // one minute
+            }
+        })
         return await response.json()
     } catch (error) {
         console.log('getSources', error)
@@ -102,7 +128,12 @@ export const getTMDBResource = async (title: string) => {
 
 export const getBanner = async (title: string) => {
     try {
-        const response = await fetch(`${baseUrl}/api/anime/cover?id=${title}`, cache)
+        const response = await fetch(`${baseUrl}/api/anime/cover?id=${title}`, {
+            headers: headers,
+            next: {
+                revalidate: 60 // one minute
+            }
+        })
         return await response.json()
     } catch (error) {
         console.log('getSources', error)
@@ -111,7 +142,12 @@ export const getBanner = async (title: string) => {
 
 export const searchAnime = async (query: string) => {
     try {
-        const response = await fetch(`${baseUrl}/api/anime/search/${query}`, nocache)
+        const response = await fetch(`${baseUrl}/api/anime/search/${query}`, {
+            headers: headers,
+            next: {
+                revalidate: 0 // zero
+            }
+        })
         return await response.json()
     } catch (error) {
         console.log('searchAnime', error)
@@ -120,7 +156,12 @@ export const searchAnime = async (query: string) => {
 
 export const getNews = async () => {
     try {
-        const response = await fetch(`${baseUrl}/api/anime/news`, cache)
+        const response = await fetch(`${baseUrl}/api/anime/news`, {
+            headers: headers,
+            next: {
+                revalidate: 60 // one minute
+            }
+        })
         return await response.json()
     } catch (error) {
         console.log('getNews', error)

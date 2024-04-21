@@ -11,14 +11,21 @@ type Props = {
 }
 
 export default async function AnimePlayer({ data, id, episode, currentEpisode }: Props) {
-    const [ response, skip ]  = await Promise.all([
-        getSources(episode),
-        getSkipTimes(id)
-    ])
+    // const [ response, skip ]  = await Promise.all([
+    //     getSources(episode),
+    //     getSkipTimes(id)
+    // ])
+
+    const response = await getSources(episode)
 
     return !response.error && (
         <section className="h-fit w-full">
-            <Player info={data} source={response} currentEpisode={currentEpisode} skip={skip?.episodes} />
+            <Player 
+                info={data} 
+                source={response} 
+                currentEpisode={currentEpisode} 
+                // skip={skip?.episodes} 
+            />
         </section>
 
     )

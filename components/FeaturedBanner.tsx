@@ -35,8 +35,7 @@ export default function FeaturedBanner({ data, video_api }: Props) {
     }, [data, video_api])
 
     return !video ? (
-        <Image
-            priority
+        <img
             src={data?.cover}
             alt={data?.title?.english}
             width={1200}

@@ -1,12 +1,12 @@
 import type { Metadata, Viewport } from "next"
-import { Inter } from "next/font/google"
+import { Raleway } from "next/font/google"
 import "./globals.css"
 import Nav from "@/components/Nav"
 import Footer from "@/components/Footer"
 import ScrollTopButton from "@/components/ScrollTopButton"
 import ScrollTopDefault from "@/components/ScrollTopDefault"
 
-const inter = Inter({ subsets: ["latin"] })
+const raleway = Raleway({ subsets: ["latin"] })
 
 export const viewport: Viewport = {
     themeColor: '#317EFB',
@@ -38,7 +38,7 @@ type Props = {
 export default function RootLayout({ children, }: Readonly<Props>) {
     return (
         <html lang="en">
-            <body className={inter.className} suppressHydrationWarning>
+            <body className={raleway.className} suppressHydrationWarning>
                 <Nav />
                     {children}
                 <Footer />

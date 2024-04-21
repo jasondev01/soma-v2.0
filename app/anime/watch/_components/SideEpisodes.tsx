@@ -114,9 +114,57 @@ export default function SideEpisodes({ data, currentEpisode }: Props) {
     return (
         <>
             <div className={`${nextEpisode ? "pb-3" : "" } border-b border-white/20  ${totalEpisodes >= 12 ? "pr-[18px]" : "pr-2.5" }`}>
-                <span className='block text-1xl font-semibold tracking-wide mb-2'>
-                    {nextEpisode ? "Next Episode" : "Episodes"}
-                </span>
+
+                <div className='mb-3 flex gap-x-2 items-center w-full justify-between'>
+                    <span className='block text-1xl font-semibold tracking-wide'>
+                        {nextEpisode ? "Next Episode" : "Episodes"}
+                    </span>
+                    <div className='flex gap-x-2'>
+                        <div className="flex gap-x-4 items-center w-full h-full justify-between md:w-fit" >
+                            {totalEpisodes > 35 && (
+                                <div className="rounded-md px-2 py-1.5 bg-gray-900/90 text-xs font-semibold relative !select-none ">
+                                    <div
+                                        ref={dropdownRef}
+                                        className="flex gap-x-2 justify-between items-center w-[100px] shadow-sm cursor-pointer"
+                                        onClick={() =>
+                                            setIsRangeClicked((prev) => !prev)
+                                        }
+                                    >
+                                        {!displayRange ? (
+                                            <span>
+                                                {range[0].start + 1} -{" "}
+                                                {range[0].end + 1}
+                                            </span>
+                                        ) : (
+                                            <span>{displayRange}</span>
+                                        )}
+                                        <AngleArrow
+                                            className={`h-5 w-5 transition-all duration-300 ease-in-out ${
+                                                isRangeClicked ? "-rotate-180" : ""
+                                            }`}
+                                        />
+                                    </div>
+                                    <div className={`absolute z-[999] left-0 rounded-md origin-bottom mt-2.5 w-full min-h-10 bg-gray-900 p-1 flex-col gap-y-1 shadow-[0_0_10px_-4px] shadow-black ${range?.length > 10 ? "overflow-y-auto h-96" : "h-fit" } ${isRangeClicked ? "flex" : "hidden"}`}>
+                                        {range?.map((r, idx) => (
+                                            <button
+                                                key={idx}
+                                                className={`text-left px-2 py-1.5 hover:bg-cyan-800 rounded-md ${activeRange === idx ? "bg-cyan-400/30" : "" }`}
+                                                onClick={() => handleRangeClick(r, idx) }
+                                            >
+                                                {`${r.start + 1} - ${r.end + 1}`}
+                                            </button>
+                                        ))}
+                                    </div>
+                                </div>
+                            )}
+                        </div>
+                        <button onClick={() => toggleSortOrder()} className='block w-fit' title="Sort ASC/DESC">
+                            <SortTwoArrows
+                                className="size-5 group-hover:stroke-red-500 transition-all"
+                            />
+                        </button>
+                    </div>
+                </div>
                 {nextEpisode && (
                     <Link 
                         href={`/anime/watch/${data?.id}?episode=${nextEpisode?.id}`} 
@@ -147,51 +195,7 @@ export default function SideEpisodes({ data, currentEpisode }: Props) {
                 )}
             </div>
             <div className='pt-3 '>
-                <div className='mb-3 flex gap-x-2 items-center w-full justify-end'>
-                    <div className="flex gap-x-4 items-center w-full h-full justify-between md:w-fit" >
-                        {totalEpisodes > 35 && (
-                            <div className="rounded-md px-2 py-1.5 bg-gray-900/90 text-xs font-semibold relative !select-none ">
-                                <div
-                                    ref={dropdownRef}
-                                    className="flex gap-x-2 justify-between items-center w-[100px] shadow-sm cursor-pointer"
-                                    onClick={() =>
-                                        setIsRangeClicked((prev) => !prev)
-                                    }
-                                >
-                                    {!displayRange ? (
-                                        <span>
-                                            {range[0].start + 1} -{" "}
-                                            {range[0].end + 1}
-                                        </span>
-                                    ) : (
-                                        <span>{displayRange}</span>
-                                    )}
-                                    <AngleArrow
-                                        className={`h-5 w-5 transition-all duration-300 ease-in-out ${
-                                            isRangeClicked ? "-rotate-180" : ""
-                                        }`}
-                                    />
-                                </div>
-                                <div className={`absolute z-[999] left-0 rounded-md origin-bottom mt-2.5 w-full min-h-10 bg-gray-900 p-1 flex-col gap-y-1 shadow-[0_0_10px_-4px] shadow-black ${range?.length > 10 ? "overflow-y-auto h-96" : "h-fit" } ${isRangeClicked ? "flex" : "hidden"}`}>
-                                    {range?.map((r, idx) => (
-                                        <button
-                                            key={idx}
-                                            className={`text-left px-2 py-1.5 hover:bg-cyan-800 rounded-md ${activeRange === idx ? "bg-cyan-400/30" : "" }`}
-                                            onClick={() => handleRangeClick(r, idx) }
-                                        >
-                                            {`${r.start + 1} - ${r.end + 1}`}
-                                        </button>
-                                    ))}
-                                </div>
-                            </div>
-                        )}
-                    </div>
-                    <button onClick={() => toggleSortOrder()} className='block w-fit' title="Sort ASC/DESC">
-                        <SortTwoArrows
-                            className="size-5 group-hover:stroke-red-500 transition-all"
-                        />
-                    </button>
-                </div>
+                
                 <div className={'h-[1200px] overflow-y-auto side_episodes pr-2.5 group'}>
                     {totalEpisodes > 35 ?
                      displayedEpisodes?.map(ep => (

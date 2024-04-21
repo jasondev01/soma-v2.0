@@ -1,14 +1,13 @@
 'use client'
 
 import { AnilistInfoInterface } from "@/types"
-import Image from "next/image"
 import parse from 'html-react-parser'
 import Link from "next/link"
 import { MdPlayCircle } from "react-icons/md"
 import { IoMdShare } from "react-icons/io"
 import { FacebookShareButton } from "react-share"
 import { FaRegStar } from "react-icons/fa6"
-import { useEffect, useState } from "react"
+import { useState } from "react"
 
 type Props = {
     data: AnilistInfoInterface
@@ -43,7 +42,7 @@ export default function Overview({ data }: Props) {
                     }}
                 >
                     <div className="absolute left-0 top-0 w-full h-full" />
-                    <Image
+                    <img
                         src={data?.image}   
                         alt={data?.title?.english || data?.title?.romaji}
                         width={180}
@@ -80,7 +79,7 @@ export default function Overview({ data }: Props) {
                     <div className="container mt-3 block md:hidden">
                         <Link
                             href={`/anime/watch/${data?.id}?episode=${episodeOne?.id}`}
-                            className="text-xs uppercase font-bold btn btn-primary md:!w-[180px] !flex justify-center items-center gap-x-1 rounded-full mx-auto"
+                            className="text-[11px] uppercase font-bold py-1.5 px-3 w-fit md:!w-[180px] !flex justify-center items-center gap-x-1 rounded-full mx-auto"
                             style={{
                                 backgroundColor: data?.color || 'sky',
                                 borderColor: data?.color || 'sky'
