@@ -5,6 +5,8 @@ import Nav from "@/components/Nav"
 import Footer from "@/components/Footer"
 import ScrollTopButton from "@/components/ScrollTopButton"
 import ScrollTopDefault from "@/components/ScrollTopDefault"
+import HolyLoader from "holy-loader"
+import TakeDownNotice from "@/components/TakeDownNotice"
 
 const raleway = Raleway({ subsets: ["latin"] })
 
@@ -39,11 +41,18 @@ export default function RootLayout({ children, }: Readonly<Props>) {
     return (
         <html lang="en">
             <body className={raleway.className} suppressHydrationWarning>
+                <HolyLoader 
+                    color="#67e8f9"
+                    height="2px"
+                    speed={200}
+                    easing="linear"
+                />
                 <Nav />
                     {children}
                 <Footer />
                 <ScrollTopButton />
                 <ScrollTopDefault />
+                <TakeDownNotice />
             </body>
         </html>
     )
